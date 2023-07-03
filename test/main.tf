@@ -57,6 +57,9 @@ module "doeks_data_addons" {
   enable_yunikorn             = true
   enable_flink_operator       = true
   enable_spark_history_server = true
+  enable_nvidia_gpu_operator = true
+  enable_jupyterhub = true
+  enable_emr_spark_operator = true
 
   # Observability
   enable_prometheus = true
@@ -70,7 +73,7 @@ module "eks" {
   version = "~> 19.13"
 
   cluster_name                   = local.name
-  cluster_version                = "1.25"
+  cluster_version                = "1.26"
   cluster_endpoint_public_access = true
 
   vpc_id     = module.vpc.vpc_id
@@ -82,9 +85,9 @@ module "eks" {
     initial = {
       instance_types = ["m5.xlarge"]
 
-      min_size     = 2
+      min_size     = 4
       max_size     = 10
-      desired_size = 2
+      desired_size = 4
     }
   }
 
@@ -93,7 +96,7 @@ module "eks" {
 
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
-  version = "~> 4.0"
+  version = "~> 5.0"
 
   name = local.name
   cidr = local.vpc_cidr

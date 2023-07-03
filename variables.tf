@@ -95,3 +95,46 @@ variable "flink_operator_helm_config" {
   type        = any
   default     = {}
 }
+
+#---------------------------------------------------
+# NVIDIA GPU OPERATOR
+#---------------------------------------------------
+variable "enable_nvidia_gpu_operator" {
+  description = "Enable NVIDIA GPU Operator add-on"
+  type        = bool
+  default     = false
+}
+
+variable "nvidia_gpu_operator_helm_config" {
+  description = "Helm configuration for NVIDIA GPU Operator"
+  type        = any
+  default     = {}
+}
+
+#---------------------------------------------------
+# EMR Runtime Spark Operator
+#---------------------------------------------------
+variable "enable_emr_spark_operator" {
+  description = "Enable the Spark Operator to submit jobs with EMR Runtime"
+  default     = false
+  type        = bool
+}
+
+variable "emr_spark_operator_helm_config" {
+  description = "Helm configuration for Spark Operator with EMR Runtime"
+  type        = any
+  default     = {}
+}
+
+#-----------JupyterHub ADDON-------------
+variable "enable_jupyterhub" {
+  description = "Enable Jupyterhub Add-On"
+  type        = bool
+  default     = false
+}
+
+variable "jupyterhub_helm_config" {
+  description = "Helm configuration for JupyterHub"
+  type        = any
+  default     = {}
+}
