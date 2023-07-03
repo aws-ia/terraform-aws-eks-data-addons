@@ -6,7 +6,7 @@ The purpose of this module is to provide customers with the flexibility to selec
 ## Important Note
 
 Please be aware that this module is primarily intended for use with supported Data on EKS blueprints.
-We kindly request that you refrain from adding new Kubernetes add-ons to this module unless they are directly related to [Data on EKS]([Data on EKS](https://github.com/awslabs/data-on-eks)) blueprints.
+We kindly request that you refrain from adding new Kubernetes add-ons to this module unless they are directly related to [Data on EKS](https://github.com/awslabs/data-on-eks) blueprints.
 Your understanding and cooperation are greatly appreciated. :pray:
 
 ## Available Add-ons
@@ -15,12 +15,18 @@ The following add-ons are included in this Terraform module:
 
 | Add-on Name                                                                                                              | Description                                                     |
 |--------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------|
-| [Spark Operator](https://github.com/GoogleCloudPlatform/spark-on-k8s-operator/tree/master/charts/spark-operator-chart)   | A Helm chart for Spark on Kubernetes operator                   |
+| [EMR Spark Operator](https://docs.aws.amazon.com/emr/latest/EMR-on-EKS-DevelopmentGuide/spark-operator-gs.html)   | A Helm chart for EMR Spark Operator for EKS                   |
 | [Apache Flink Operator](https://github.com/apache/flink-kubernetes-operator/tree/main/helm/flink-kubernetes-operator) | A Helm chart for Apache Flink Kubernetes Operator               |
 | [Apache YuniKorn](https://github.com/apache/yunikorn-release/tree/master/helm-charts/yunikorn)                           | A Helm Chart for Apache YuniKorn Batch schdeuler for Kubernetes |
 | [Spark History Server](https://github.com/Hyper-Mesh/spark-history-server)                       | A Helm Chart for Spark History Server for Kubernetes            |
+| [JupyterHub](https://github.com/jupyterhub/zero-to-jupyterhub-k8s/tree/main/jupyterhub)                       | A Helm Chart for zero-to-jupyterhub-k8s on Kubernetes          |
+| [NVIDIA GPU Operator](https://github.com/NVIDIA/gpu-operator/tree/master/deployments/gpu-operator)                       | A Helm Chart for NVIDIA GPU Operator for Kubernetes            |
+| [Spark Operator](https://github.com/GoogleCloudPlatform/spark-on-k8s-operator/tree/master/charts/spark-operator-chart)   | A Helm chart for Spark on Kubernetes operator  
 
 Other commonly used add-ons with Data on EKS Blueprints:
+
+**NOTE**: Please be aware that some of these add-ons may be deprecated in favor of EKS Blueprints add-ons or EKS Managed add-ons.
+
 
 | Add-on Name                                                   | Description                 |
 |---------------------------------------------------------------|-----------------------------|

@@ -57,9 +57,9 @@ module "doeks_data_addons" {
   enable_yunikorn             = true
   enable_flink_operator       = true
   enable_spark_history_server = true
-  enable_nvidia_gpu_operator = true
-  enable_jupyterhub = true
-  enable_emr_spark_operator = true
+  enable_nvidia_gpu_operator  = true
+  enable_jupyterhub           = true
+  enable_emr_spark_operator   = true
 
   # Observability
   enable_prometheus = true
