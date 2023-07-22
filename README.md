@@ -44,8 +44,6 @@ module "eks_data_addons" {
 }
 ```
 
-Please refer to the documentation of each add-on for more details on usage and configuration.
-
 ----
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

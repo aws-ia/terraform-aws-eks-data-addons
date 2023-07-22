@@ -1,4 +1,3 @@
-
 resource "helm_release" "aws_efa_k8s_device_plugin" {
   count = var.enable_aws_efa_k8s_device_plugin ? 1 : 0
 

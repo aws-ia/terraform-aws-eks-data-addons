@@ -2,6 +2,7 @@ variable "oidc_provider_arn" {
   description = "The ARN of the cluster OIDC Provider"
   type        = string
 }
+
 #---------------------------------------------------
 # SPARK K8S OPERATOR
 #---------------------------------------------------
@@ -31,6 +32,7 @@ variable "yunikorn_helm_config" {
   type        = any
   default     = {}
 }
+
 #---------------------------------------------------
 # SPARK HISTORY SERVER
 #---------------------------------------------------
