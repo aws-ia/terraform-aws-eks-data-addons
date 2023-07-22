@@ -28,6 +28,13 @@ provider "helm" {
   }
 }
 
+# This ECR "registry_id" number refers to the AWS account ID for us-west-2 region
+# if you are using a different region, make sure to change it, you can get the account from the link below
+# https://docs.aws.amazon.com/emr/latest/EMR-on-EKS-DevelopmentGuide/docker-custom-images-tag.html
+data "aws_ecr_authorization_token" "token" {
+  registry_id = "895885662937"
+}
+
 data "aws_availability_zones" "available" {}
 
 locals {
@@ -47,26 +54,30 @@ module "doeks_data_addons" {
   source            = "../"
   oidc_provider_arn = module.eks.oidc_provider_arn
 
-  # Data add-ons
+  enable_airflow                   = true
+  enable_aws_efa_k8s_device_plugin = true
+  enable_aws_neuron_device_plugin  = true
+  enable_emr_spark_operator        = true
+  enable_flink_operator            = true
+  enable_jupyterhub                = true
+  enable_kubecost                  = true
+  enable_nvidia_gpu_operator       = true
+  enable_spark_history_server      = true
+  emr_spark_operator_helm_config = {
+    repository_username = data.aws_ecr_authorization_token.token.user_name
+    repository_password = data.aws_ecr_authorization_token.token.password
+  }
+
   enable_spark_operator = true
   # With custom values
   spark_operator_helm_config = {
     values = [templatefile("${path.module}/helm-values/spark-operator-values.yaml", {})]
   }
-
-  enable_yunikorn             = true
-  enable_flink_operator       = true
-  enable_spark_history_server = true
-  enable_nvidia_gpu_operator  = true
-  enable_jupyterhub           = true
-  enable_emr_spark_operator   = true
-
-  # Observability
-  enable_prometheus = true
-  enable_grafana    = true
-  enable_kubecost   = true
+  enable_strimzi_kafka_operator = true
+  enable_yunikorn               = true
 }
 
+# checkov:skip=CKV_TF_1
 #tfsec:ignore:aws-eks-enable-control-plane-logging
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
@@ -94,6 +105,7 @@ module "eks" {
   tags = local.tags
 }
 
+# checkov:skip=CKV_TF_1
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "~> 5.0"

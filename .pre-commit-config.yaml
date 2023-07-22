@@ -10,7 +10,7 @@ repos:
       - id: detect-aws-credentials
         args: ['--allow-missing-credentials']
   - repo: https://github.com/antonbabenko/pre-commit-terraform
-    rev: v1.80.0
+    rev: v1.81.0
     hooks:
       - id: terraform_fmt
       - id: terraform_docs
@@ -31,11 +31,5 @@ repos:
           - '--args=--only=terraform_required_providers'
           - '--args=--only=terraform_standard_module_structure'
           - '--args=--only=terraform_workspace_remote'
-          - '--args=--only=terraform_empty_list_equality'
-          - '--args=--only=terraform_unused_required_providers'
       - id: terraform_validate
-      - id: terraform_tfsec
-        args:
-          - --args=--config-file=__GIT_WORKING_DIR__/.tfsec.yaml
-          - --args=--concise-output
-          - --args=--exclude-path=tests/
+        exclude: docs

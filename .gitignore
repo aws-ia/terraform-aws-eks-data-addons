@@ -1,5 +1,10 @@
 .DS_Store
 .idea
+.build
+
+# ignore the lock file
+website/package-lock.json
+
 # Local .terraform directories
 **/.terraform/*
 
@@ -10,6 +15,8 @@
 *.tfstate
 *.tfstate.*
 *.tfplan
+
+terraform-apply.log
 
 # Crash log files
 crash.log
@@ -30,3 +37,15 @@ override.tf.json
 # Ignore CLI configuration files
 .terraformrc
 terraform.rc
+
+# Locals
+kubeconfig*
+kube-config*
+local_tf_state/
+.vscode
+.gitallowed
+site
+.env*
+
+# Checks
+.tfsec

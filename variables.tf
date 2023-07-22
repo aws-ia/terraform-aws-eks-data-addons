@@ -2,7 +2,6 @@ variable "oidc_provider_arn" {
   description = "The ARN of the cluster OIDC Provider"
   type        = string
 }
-
 #---------------------------------------------------
 # SPARK K8S OPERATOR
 #---------------------------------------------------
@@ -18,7 +17,9 @@ variable "spark_operator_helm_config" {
   default     = {}
 }
 
-#-----------APACHE YUNIKORN ADDON-------------
+#---------------------------------------------------
+# APACHE YUNIKORN
+#---------------------------------------------------
 variable "enable_yunikorn" {
   description = "Enable Apache YuniKorn K8s scheduler add-on"
   type        = bool
@@ -30,8 +31,9 @@ variable "yunikorn_helm_config" {
   type        = any
   default     = {}
 }
-
-#-----------SPARK HISTORY SERVER ADDON-------------
+#---------------------------------------------------
+# SPARK HISTORY SERVER
+#---------------------------------------------------
 variable "enable_spark_history_server" {
   description = "Enable Spark History Server add-on"
   type        = bool
@@ -44,20 +46,9 @@ variable "spark_history_server_helm_config" {
   default     = {}
 }
 
-#-----------PROMETHEUS-------------
-variable "enable_prometheus" {
-  description = "Enable Community Prometheus add-on"
-  type        = bool
-  default     = false
-}
-
-variable "prometheus_helm_config" {
-  description = "Community Prometheus Helm Chart config"
-  type        = any
-  default     = {}
-}
-
-#-----------KUBECOST-------------
+#---------------------------------------------------
+# KUBECOST
+#---------------------------------------------------
 variable "enable_kubecost" {
   description = "Enable Kubecost add-on"
   type        = bool
@@ -70,20 +61,9 @@ variable "kubecost_helm_config" {
   default     = {}
 }
 
-#-----------GRAFANA-------------
-variable "enable_grafana" {
-  description = "Enable Grafana add-on"
-  type        = bool
-  default     = false
-}
-
-variable "grafana_helm_config" {
-  description = "Grafana Helm Chart config"
-  type        = any
-  default     = {}
-}
-
-#-----------FLINK OPERATOR-------------
+#---------------------------------------------------
+# FLINK OPERATOR
+#---------------------------------------------------
 variable "enable_flink_operator" {
   description = "Enable Flink Operator add-on"
   type        = bool
@@ -116,8 +96,8 @@ variable "nvidia_gpu_operator_helm_config" {
 #---------------------------------------------------
 variable "enable_emr_spark_operator" {
   description = "Enable the Spark Operator to submit jobs with EMR Runtime"
-  default     = false
   type        = bool
+  default     = false
 }
 
 variable "emr_spark_operator_helm_config" {
@@ -126,7 +106,24 @@ variable "emr_spark_operator_helm_config" {
   default     = {}
 }
 
-#-----------JupyterHub ADDON-------------
+#---------------------------------------------------
+# Srimzi Kafka Operator
+#---------------------------------------------------
+variable "enable_strimzi_kafka_operator" {
+  description = "Enable the Strimzi Kafka Operator"
+  type        = bool
+  default     = false
+}
+
+variable "strimzi_kafka_operator_helm_config" {
+  description = "Helm configuration for Strimzi Kafka Operator"
+  type        = any
+  default     = {}
+}
+
+#---------------------------------------------------
+# JUPYTERHUB
+#---------------------------------------------------
 variable "enable_jupyterhub" {
   description = "Enable Jupyterhub Add-On"
   type        = bool
@@ -135,6 +132,51 @@ variable "enable_jupyterhub" {
 
 variable "jupyterhub_helm_config" {
   description = "Helm configuration for JupyterHub"
+  type        = any
+  default     = {}
+}
+
+#---------------------------------------------------
+# AIRFLOW
+#---------------------------------------------------
+variable "enable_airflow" {
+  description = "Enable Airflow add-on"
+  type        = bool
+  default     = false
+}
+
+variable "airflow_helm_config" {
+  description = "Airflow Helm Chart config"
+  type        = any
+  default     = {}
+}
+
+#---------------------------------------------------
+# AWS Neuron Device Plugin (Using Local Helm Chart)
+#---------------------------------------------------
+variable "enable_aws_neuron_device_plugin" {
+  description = "Enable AWS Neuron Device Plugin add-on"
+  type        = bool
+  default     = false
+}
+
+variable "aws_neuron_device_plugin_helm_config" {
+  description = "AWS Neuron Device Plugin Helm Chart config"
+  type        = any
+  default     = {}
+}
+
+#---------------------------------------------------
+# AWS EFA K8s Device Plugin (Using Local Helm Chart)
+#---------------------------------------------------
+variable "enable_aws_efa_k8s_device_plugin" {
+  description = "Enable EFA K8s Plugin add-on"
+  type        = bool
+  default     = false
+}
+
+variable "aws_efa_k8s_device_plugin_helm_config" {
+  description = "EFA K8s Plugin add-on Helm Chart config"
   type        = any
   default     = {}
 }
