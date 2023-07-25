@@ -11,7 +11,7 @@ Your understanding and cooperation are highly appreciated. :pray:
 
 ## Usage
 
-Create Addon with the following example using Terraform registry. Checkout the complete example under `test` folder.
+Create Addons with the following example using Terraform registry. Checkout the complete example under `test` folder.
 
 ```hcl
 module "eks_data_addons" {
