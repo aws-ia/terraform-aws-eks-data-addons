@@ -5,7 +5,7 @@ The purpose of this module is to provide users with the flexibility to select an
 
 :warning: **Important Note**
 
-Users can consume this Terraform module in their projects to deploy any of the available addons. However, we kindly request that you refrain from submitting Pull Requests (PRs) to add new addons at the moment, unless there is a supported blueprint available in the [Data on EKS](https://github.com/awslabs/data-on-eks) repository. The Apache and CNCF communities offer numerous open-source Data and ML add-ons, and while we appreciate their value, supporting all of them poses challenges.
+Users can consume this Terraform module in their projects to deploy any of the available addons. We will continue to maintain and update the existing Data/ML add-ons. However, we kindly request that you refrain from submitting Pull Requests (PRs) to add new addons at the moment, unless there is a supported blueprint available in the [Data on EKS](https://github.com/awslabs/data-on-eks) repository. The Apache and CNCF communities offer numerous open-source Data and ML add-ons, and while we appreciate their value, supporting all of them poses challenges.
 
 Your understanding and cooperation are highly appreciated. :pray:
 
@@ -20,8 +20,23 @@ module "eks_data_addons" {
 
   oidc_provider_arn = module.eks.oidc_provider_arn
 
-  # Example to deploy only Helm Chart
+  # Example to deploy AWS Neuron Device Plugin for Trainium and Inferentia instances
+  enable_aws_efa_k8s_device_plugin = true
+
+  # Example to deploy EFA K8s Device Plugin for GPU/Neuron instances
+  enable_aws_efa_k8s_device_plugin = true
+
+  # Example to deploy NVIDIA GPU Operator
+  enable_nvidia_gpu_operator = true
+
+  # Example to deploy Spark Operator Helm Chart
   enable_spark_opertor = true
+
+  # Example to deploy Flink Operator Helm Chart
+  enable_flink_operator = true
+
+  # Example to deploy Apache YuniKorn Helm Chart
+  enable_yunikorn = true
 
   # Example that uses ECR authentication for a particular registry ID
   enable_emr_spark_operator = var.enable_emr_spark_operator
@@ -30,7 +45,7 @@ module "eks_data_addons" {
     repository_password = data.aws_ecr_authorization_token.token.password
   }
 
-  # Example to deploy Helm chart that uses IAM Role for ServiceAccounts  
+  # Example to deploy Helm chart that uses IAM Role for ServiceAccounts. You can disable `create_irsa` and bring your own IAM role.
   enable_spark_history_server = var.enable_emr_spark_operator
   spark_history_server_helm_config = {
     create_irsa = true
