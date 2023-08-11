@@ -4,13 +4,9 @@ locals {
   spark_history_server_version    = "1.0.0"
 
   spark_history_server_service_account = "spark-history-server-sa"
-  spark_history_server_create_irsa     = var.enable_spark_history_server && try(var.spark_history_server_helm_config.create_irsa, false)
+  spark_history_server_create_irsa     = var.enable_spark_history_server && try(var.spark_history_server_helm_config.create_irsa, true)
   spark_history_server_namespace       = try(var.spark_history_server_helm_config["namespace"], local.spark_history_server_name)
   spark_history_server_set_values = local.spark_history_server_create_irsa ? [
-    {
-      name  = "serviceAccount.create"
-      value = true
-    },
     {
       name  = "serviceAccount.name"
       value = local.spark_history_server_service_account
@@ -22,7 +18,6 @@ locals {
   ] : []
 
   spark_history_server_default_values = <<-EOT
-# Update spark conf according to your needs
 sparkConf: |-
   spark.hadoop.fs.s3a.aws.credentials.provider=com.amazonaws.auth.WebIdentityTokenCredentialsProvider
   spark.history.fs.eventLog.rolling.maxFilesToRetain=5
