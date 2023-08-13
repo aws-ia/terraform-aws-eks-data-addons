@@ -182,3 +182,18 @@ variable "aws_efa_k8s_device_plugin_helm_config" {
   type        = any
   default     = {}
 }
+
+#---------------------------------------------------
+# KUBERAY OPERATOR
+#---------------------------------------------------
+variable "enable_kuberay_operator" {
+  description = "Enable Kuberay Operator add-on"
+  type        = bool
+  default     = false
+}
+
+variable "kuberay_operator_helm_config" {
+  description = "Helm configuration for Kuberay Operator"
+  type        = any
+  default     = {}
+}
