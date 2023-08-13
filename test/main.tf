@@ -62,6 +62,7 @@ module "doeks_data_addons" {
   enable_jupyterhub                = true
   enable_kubecost                  = true
   enable_nvidia_gpu_operator       = true
+  enable_kuberay_operator          = true 
   enable_spark_history_server      = true
   emr_spark_operator_helm_config = {
     repository_username = data.aws_ecr_authorization_token.token.user_name
