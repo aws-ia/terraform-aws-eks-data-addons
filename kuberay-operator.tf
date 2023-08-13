@@ -4,7 +4,7 @@ resource "helm_release" "kuberay_operator" {
   name                       = try(var.kuberay_operator_helm_config["name"], "kuberay-operator")
   repository                 = try(var.kuberay_operator_helm_config["repository"], "https://ray-project.github.io/kuberay-helm/")
   chart                      = try(var.kuberay_operator_helm_config["chart"], "kuberay-operator")
-  version                    = try(var.kuberay_operator_helm_config["version"], "https://ray-project.github.io/kuberay-helm/")
+  version                    = try(var.kuberay_operator_helm_config["version"], "0.6.0")
   timeout                    = try(var.kuberay_operator_helm_config["timeout"], 300)
   values                     = try(var.kuberay_operator_helm_config["values"], null)
   create_namespace           = try(var.kuberay_operator_helm_config["create_namespace"], true)
