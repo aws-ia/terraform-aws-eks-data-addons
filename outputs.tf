@@ -57,3 +57,8 @@ output "yunikorn" {
   value       = try(helm_release.yunikorn[0].metadata, null)
   description = "Yunikorn Helm Chart metadata"
 }
+
+output "kuberay_operator" {
+  value       = try(helm_release.kuberay_operator[0].metadata, null)
+  description = "Kuberay Operator Helm Chart metadata"
+}
