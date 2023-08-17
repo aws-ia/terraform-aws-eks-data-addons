@@ -197,3 +197,18 @@ variable "kuberay_operator_helm_config" {
   type        = any
   default     = {}
 }
+
+#---------------------------------------------------
+# CloudNative PG OPERATOR
+#---------------------------------------------------
+variable "enable_cnpg_operator" {
+  description = "Enable CloudNative PG Operator add-on"
+  type        = bool
+  default     = false
+}
+
+variable "cnpg_operator_helm_config" {
+  description = "CloudNative PG Operator Helm Chart config"
+  type        = any
+  default     = {}
+}
