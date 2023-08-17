@@ -1,15 +1,16 @@
 locals {
-  cnpg_operator_name = "cloudnative-pg"
-
-  cnpg_operator_version = try(var.cnpg_operator_helm_config["version"], "0.18.0")
+  cnpg_operator_name = "cnpg"
+  cnpg_chart_name    = "cloudnative-pg"
+  cnpg_operator_repo = "https://cloudnative-pg.github.io/charts"
+  cnpg_chart_version = try(var.cnpg_operator_helm_config["version"], "0.17.0")
 }
 resource "helm_release" "cnpg_operator" {
   count = var.enable_cnpg_operator ? 1 : 0
 
   name                       = try(var.cnpg_operator_helm_config["name"], local.cnpg_operator_name)
-  repository                 = try(var.cnpg_operator_helm_config["repository"], "https://cloudnative-pg.github.io/charts")
-  chart                      = try(var.cnpg_operator_helm_config["chart"], local.cnpg_operator_name)
-  version                    = local.cnpg_operator_version
+  repository                 = try(var.cnpg_operator_helm_config["repository"], local.cnpg_operator_repo)
+  chart                      = try(var.cnpg_operator_helm_config["chart"], local.cnpg_chart_name)
+  version                    = local.cnpg_chart_version
   timeout                    = try(var.cnpg_operator_helm_config["timeout"], 300)
   values                     = try(var.cnpg_operator_helm_config["values"], null)
   create_namespace           = try(var.cnpg_operator_helm_config["create_namespace"], true)
