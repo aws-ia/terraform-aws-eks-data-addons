@@ -90,6 +90,7 @@ module "eks_data_addons" {
 | [helm_release.airflow](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 | [helm_release.aws_efa_k8s_device_plugin](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 | [helm_release.aws_neuron_device_plugin](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
+| [helm_release.cnpg_operator](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 | [helm_release.emr_spark_operator](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 | [helm_release.flink_operator](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 | [helm_release.jupyterhub](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
@@ -110,10 +111,12 @@ module "eks_data_addons" {
 | <a name="input_airflow_helm_config"></a> [airflow\_helm\_config](#input\_airflow\_helm\_config) | Airflow Helm Chart config | `any` | `{}` | no |
 | <a name="input_aws_efa_k8s_device_plugin_helm_config"></a> [aws\_efa\_k8s\_device\_plugin\_helm\_config](#input\_aws\_efa\_k8s\_device\_plugin\_helm\_config) | EFA K8s Plugin add-on Helm Chart config | `any` | `{}` | no |
 | <a name="input_aws_neuron_device_plugin_helm_config"></a> [aws\_neuron\_device\_plugin\_helm\_config](#input\_aws\_neuron\_device\_plugin\_helm\_config) | AWS Neuron Device Plugin Helm Chart config | `any` | `{}` | no |
+| <a name="input_cnpg_operator_helm_config"></a> [cnpg\_operator\_helm\_config](#input\_cnpg\_operator\_helm\_config) | CloudNative PG Operator Helm Chart config | `any` | `{}` | no |
 | <a name="input_emr_spark_operator_helm_config"></a> [emr\_spark\_operator\_helm\_config](#input\_emr\_spark\_operator\_helm\_config) | Helm configuration for Spark Operator with EMR Runtime | `any` | `{}` | no |
 | <a name="input_enable_airflow"></a> [enable\_airflow](#input\_enable\_airflow) | Enable Airflow add-on | `bool` | `false` | no |
 | <a name="input_enable_aws_efa_k8s_device_plugin"></a> [enable\_aws\_efa\_k8s\_device\_plugin](#input\_enable\_aws\_efa\_k8s\_device\_plugin) | Enable EFA K8s Plugin add-on | `bool` | `false` | no |
 | <a name="input_enable_aws_neuron_device_plugin"></a> [enable\_aws\_neuron\_device\_plugin](#input\_enable\_aws\_neuron\_device\_plugin) | Enable AWS Neuron Device Plugin add-on | `bool` | `false` | no |
+| <a name="input_enable_cnpg_operator"></a> [enable\_cnpg\_operator](#input\_enable\_cnpg\_operator) | Enable CloudNative PG Operator add-on | `bool` | `false` | no |
 | <a name="input_enable_emr_spark_operator"></a> [enable\_emr\_spark\_operator](#input\_enable\_emr\_spark\_operator) | Enable the Spark Operator to submit jobs with EMR Runtime | `bool` | `false` | no |
 | <a name="input_enable_flink_operator"></a> [enable\_flink\_operator](#input\_enable\_flink\_operator) | Enable Flink Operator add-on | `bool` | `false` | no |
 | <a name="input_enable_jupyterhub"></a> [enable\_jupyterhub](#input\_enable\_jupyterhub) | Enable Jupyterhub Add-On | `bool` | `false` | no |
