@@ -1,18 +1,22 @@
 ################################################################################
-# Volcano Scheduler for TorchX
+# Volcano Batch Scheduler
 ################################################################################
 
+locals {
+  volcano_name      = "volcano"
+  volcano_namespace = "volcano-system"
+}
 resource "helm_release" "volcano" {
   count = var.enable_volcano ? 1 : 0
 
-  name                       = try(var.volcano_helm_config["name"], "volcano")
-  repository                 = try(var.volcano_helm_config["repository"], "https://github.com/volcano-sh/volcano.git/")
-  chart                      = try(var.volcano_helm_config["chart"], "volcano")
-  version                    = try(var.volcano_helm_config["version"], "1.5")
+  name                       = try(var.volcano_helm_config["name"], local.volcano_name)
+  repository                 = try(var.volcano_helm_config["repository"], "https://volcano-sh.github.io/helm-charts")
+  chart                      = try(var.volcano_helm_config["chart"], local.volcano_name)
+  version                    = try(var.volcano_helm_config["version"], "1.8")
   timeout                    = try(var.volcano_helm_config["timeout"], 300)
   values                     = try(var.volcano_helm_config["values"], null)
   create_namespace           = try(var.volcano_helm_config["create_namespace"], true)
-  namespace                  = try(var.volcano_helm_config["namespace"], "volcano")
+  namespace                  = try(var.volcano_helm_config["namespace"], local.volcano_namespace)
   lint                       = try(var.volcano_helm_config["lint"], false)
   description                = try(var.volcano_helm_config["description"], "")
   repository_key_file        = try(var.volcano_helm_config["repository_key_file"], "")

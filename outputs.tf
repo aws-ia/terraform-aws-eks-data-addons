@@ -62,3 +62,8 @@ output "kuberay_operator" {
   value       = try(helm_release.kuberay_operator[0].metadata, null)
   description = "Kuberay Operator Helm Chart metadata"
 }
+
+output "volcano" {
+  value       = try(helm_release.volcano[0].metadata, null)
+  description = "Volcano Batch Scheduler Helm Chart metadata"
+}
