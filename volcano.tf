@@ -4,7 +4,7 @@
 
 resource "helm_release" "volcano" {
   count = var.enable_volcano ? 1 : 0
-  
+
   name                       = try(var.volcano_helm_config["name"], "volcano")
   repository                 = try(var.volcano_helm_config["repository"], "https://github.com/volcano-sh/volcano.git/")
   chart                      = try(var.volcano_helm_config["chart"], "volcano")
