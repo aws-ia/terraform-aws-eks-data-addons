@@ -157,5 +157,6 @@ module "eks_data_addons" {
 | <a name="output_spark_history_server"></a> [spark\_history\_server](#output\_spark\_history\_server) | Spark History Server Helm Chart metadata |
 | <a name="output_spark_operator"></a> [spark\_operator](#output\_spark\_operator) | Spark Operator Helm Chart metadata |
 | <a name="output_strimzi_kafka_operator"></a> [strimzi\_kafka\_operator](#output\_strimzi\_kafka\_operator) | Strimzi Kafka Operator Helm Chart metadata |
+| <a name="output_volcano"></a> [volcano](#output\_volcano) | Volcano Batch Scheduler Helm Chart metadata |
 | <a name="output_yunikorn"></a> [yunikorn](#output\_yunikorn) | Yunikorn Helm Chart metadata |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
