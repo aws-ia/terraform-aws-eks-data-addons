@@ -212,3 +212,18 @@ variable "cnpg_operator_helm_config" {
   type        = any
   default     = {}
 }
+
+#---------------------------------------------------
+# Volcano Batch Scheduler
+#---------------------------------------------------
+variable "enable_volcano" {
+  description = "Enable volcano scheduler add-on"
+  type        = bool
+  default     = false
+}
+
+variable "volcano_helm_config" {
+  description = "Volcano scheduler add-on configurations"
+  type        = any
+  default     = {}
+}
