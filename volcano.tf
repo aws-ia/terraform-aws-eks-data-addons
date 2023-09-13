@@ -6,6 +6,7 @@ locals {
   volcano_name      = "volcano"
   volcano_namespace = "volcano-system"
 }
+
 resource "helm_release" "volcano" {
   count = var.enable_volcano ? 1 : 0
 
