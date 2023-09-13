@@ -213,9 +213,9 @@ variable "cnpg_operator_helm_config" {
   default     = {}
 }
 
-################################################################################
-# Volcano Scheduler for TorchX
-################################################################################
+#---------------------------------------------------
+# Volcano Batch Scheduler
+#---------------------------------------------------
 
 variable "enable_volcano" {
   description = "Enable volcano scheduler add-on"
