@@ -227,3 +227,35 @@ variable "volcano_helm_config" {
   type        = any
   default     = {}
 }
+
+#---------------------------------------------------
+# Dask Operator
+#---------------------------------------------------
+
+variable "enable_dask_operator" {
+  description = "Enable Dask Operator add-on"
+  type        = bool
+  default     = false
+}
+
+variable "dask_operator_helm_config" {
+  description = "Dask Operator add-on configurations"
+  type        = any
+  default     = {}
+}
+
+#---------------------------------------------------
+# Dask Hub Operator
+#---------------------------------------------------
+
+variable "enable_daskhub" {
+  description = "Enable DaskHub"
+  type        = bool
+  default     = false
+}
+
+variable "daskhub_helm_config" {
+  description = "DaskHub add-on configurations"
+  type        = any
+  default     = {}
+}
