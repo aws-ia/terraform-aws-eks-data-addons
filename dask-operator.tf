@@ -1,9 +1,10 @@
 locals {
   dask_operator_name = "dask-operator"
-  dask_chart_name    = "dask"
+  dask_chart_name    = "dask-kubernetes-operator"
   dask_operator_repo = "https://helm.dask.org"
   dask_chart_version = try(var.dask_operator_helm_config["version"], "2023.1.0")
 }
+
 resource "helm_release" "dask_operator" {
   count = var.enable_dask_operator ? 1 : 0
 
@@ -14,7 +15,7 @@ resource "helm_release" "dask_operator" {
   timeout                    = try(var.dask_operator_helm_config["timeout"], 300)
   values                     = try(var.dask_operator_helm_config["values"], null)
   create_namespace           = try(var.dask_operator_helm_config["create_namespace"], true)
-  namespace                  = try(var.dask_operator_helm_config["namespace"], "dask-operator")
+  namespace                  = try(var.dask_operator_helm_config["namespace"], local.dask_operator_name)
   lint                       = try(var.dask_operator_helm_config["lint"], false)
   description                = try(var.dask_operator_helm_config["description"], "")
   repository_key_file        = try(var.dask_operator_helm_config["repository_key_file"], "")
