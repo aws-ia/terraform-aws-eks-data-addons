@@ -67,7 +67,13 @@ output "volcano" {
   value       = try(helm_release.volcano[0].metadata, null)
   description = "Volcano Batch Scheduler Helm Chart metadata"
 }
+
 output "dask_operator" {
   value       = try(helm_release.dask_operator[0].metadata, null)
-  description = "Kuberay Operator Helm Chart metadata"
+  description = "Dask Operator Helm Chart metadata"
+}
+
+output "dask_hub" {
+  value       = try(helm_release.daskhub[0].metadata, null)
+  description = "Dask Hub Helm Chart metadata"
 }

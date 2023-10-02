@@ -244,6 +244,11 @@ variable "dask_operator_helm_config" {
   default     = {}
 
 }
+
+#---------------------------------------------------
+# Dask Hub Operator
+#---------------------------------------------------
+
 variable "enable_daskhub" {
   description = "Enable DaskHub"
   type        = bool
@@ -254,5 +259,4 @@ variable "daskhub_helm_config" {
   description = "DaskHub add-on configurations"
   type        = any
   default     = {}
-
 }
