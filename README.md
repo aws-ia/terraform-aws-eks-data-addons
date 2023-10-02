@@ -154,7 +154,8 @@ module "eks_data_addons" {
 | <a name="output_airflow"></a> [airflow](#output\_airflow) | Airflow Helm Chart metadata |
 | <a name="output_aws_efa_k8s_device_plugin"></a> [aws\_efa\_k8s\_device\_plugin](#output\_aws\_efa\_k8s\_device\_plugin) | AWS EFA K8s Plugin Helm Chart metadata |
 | <a name="output_aws_neuron_device_plugin"></a> [aws\_neuron\_device\_plugin](#output\_aws\_neuron\_device\_plugin) | AWS Neuron Device Plugin Helm Chart metadata |
-| <a name="output_dask_operator"></a> [dask\_operator](#output\_dask\_operator) | Kuberay Operator Helm Chart metadata |
+| <a name="output_dask_hub"></a> [dask\_hub](#output\_dask\_hub) | Dask Hub Helm Chart metadata |
+| <a name="output_dask_operator"></a> [dask\_operator](#output\_dask\_operator) | Dask Operator Helm Chart metadata |
 | <a name="output_emr_spark_operator"></a> [emr\_spark\_operator](#output\_emr\_spark\_operator) | EMR Spark Operator Helm Chart metadata |
 | <a name="output_flink_operator"></a> [flink\_operator](#output\_flink\_operator) | Flink Operator Helm Chart metadata |
 | <a name="output_jupyterhub"></a> [jupyterhub](#output\_jupyterhub) | Jupyterhub Helm Chart metadata |
