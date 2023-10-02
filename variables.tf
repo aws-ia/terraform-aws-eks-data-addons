@@ -242,7 +242,6 @@ variable "dask_operator_helm_config" {
   description = "Dask Operator add-on configurations"
   type        = any
   default     = {}
-
 }
 
 #---------------------------------------------------
