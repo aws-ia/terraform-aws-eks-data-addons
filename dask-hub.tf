@@ -11,7 +11,7 @@ resource "helm_release" "daskhub" {
   name                       = try(var.daskhub_helm_config["name"], local.daskhub_name)
   repository                 = try(var.daskhub_helm_config["repository"], local.daskhub_repo)
   chart                      = try(var.daskhub_helm_config["chart"], local.daskhub_chart_name)
-  version                    = local.dask_chart_version
+  version                    = local.daskhub_chart_version
   timeout                    = try(var.daskhub_helm_config["timeout"], 300)
   values                     = try(var.daskhub_helm_config["values"], null)
   create_namespace           = try(var.daskhub_helm_config["create_namespace"], true)
