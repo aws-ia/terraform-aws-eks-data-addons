@@ -259,3 +259,18 @@ variable "daskhub_helm_config" {
   type        = any
   default     = {}
 }
+
+#---------------------------------------------------
+# MLflow Tracking (Using Local Helm Chart)
+#---------------------------------------------------
+variable "enable_mlflow_tracking" {
+  description = "Enable MLflow Tracking add-on"
+  type        = bool
+  default     = false
+}
+
+variable "mlflow_tracking_helm_config" {
+  description = "MLflow Tracking add-on Helm Chart config"
+  type        = any
+  default     = {}
+}
