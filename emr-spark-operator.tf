@@ -1,5 +1,5 @@
 locals {
-  emr_spark_operator_name = "flink-kubernetes-operator"
+  emr_spark_operator_name = "spark-kubernetes-operator"
   emr_spark_operator_values = yamlencode(merge(
     yamldecode(<<EOT
 webhook:

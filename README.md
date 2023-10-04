@@ -93,6 +93,7 @@ module "eks_data_addons" {
 | [helm_release.cnpg_operator](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 | [helm_release.dask_operator](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 | [helm_release.daskhub](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
+| [helm_release.emr_flink_operator](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 | [helm_release.emr_spark_operator](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 | [helm_release.flink_operator](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 | [helm_release.jupyterhub](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
@@ -117,6 +118,7 @@ module "eks_data_addons" {
 | <a name="input_cnpg_operator_helm_config"></a> [cnpg\_operator\_helm\_config](#input\_cnpg\_operator\_helm\_config) | CloudNative PG Operator Helm Chart config | `any` | `{}` | no |
 | <a name="input_dask_operator_helm_config"></a> [dask\_operator\_helm\_config](#input\_dask\_operator\_helm\_config) | Dask Operator add-on configurations | `any` | `{}` | no |
 | <a name="input_daskhub_helm_config"></a> [daskhub\_helm\_config](#input\_daskhub\_helm\_config) | DaskHub add-on configurations | `any` | `{}` | no |
+| <a name="input_emr_flink_operator_helm_config"></a> [emr\_flink\_operator\_helm\_config](#input\_emr\_flink\_operator\_helm\_config) | Helm configuration for Flink Operator with EMR Runtime | `any` | `{}` | no |
 | <a name="input_emr_spark_operator_helm_config"></a> [emr\_spark\_operator\_helm\_config](#input\_emr\_spark\_operator\_helm\_config) | Helm configuration for Spark Operator with EMR Runtime | `any` | `{}` | no |
 | <a name="input_enable_airflow"></a> [enable\_airflow](#input\_enable\_airflow) | Enable Airflow add-on | `bool` | `false` | no |
 | <a name="input_enable_aws_efa_k8s_device_plugin"></a> [enable\_aws\_efa\_k8s\_device\_plugin](#input\_enable\_aws\_efa\_k8s\_device\_plugin) | Enable EFA K8s Plugin add-on | `bool` | `false` | no |
@@ -124,6 +126,7 @@ module "eks_data_addons" {
 | <a name="input_enable_cnpg_operator"></a> [enable\_cnpg\_operator](#input\_enable\_cnpg\_operator) | Enable CloudNative PG Operator add-on | `bool` | `false` | no |
 | <a name="input_enable_dask_operator"></a> [enable\_dask\_operator](#input\_enable\_dask\_operator) | Enable Dask Operator add-on | `bool` | `false` | no |
 | <a name="input_enable_daskhub"></a> [enable\_daskhub](#input\_enable\_daskhub) | Enable DaskHub | `bool` | `false` | no |
+| <a name="input_enable_emr_flink_operator"></a> [enable\_emr\_flink\_operator](#input\_enable\_emr\_flink\_operator) | Enable the Flink Operator to run Flink application with EMR Runtime | `bool` | `false` | no |
 | <a name="input_enable_emr_spark_operator"></a> [enable\_emr\_spark\_operator](#input\_enable\_emr\_spark\_operator) | Enable the Spark Operator to submit jobs with EMR Runtime | `bool` | `false` | no |
 | <a name="input_enable_flink_operator"></a> [enable\_flink\_operator](#input\_enable\_flink\_operator) | Enable Flink Operator add-on | `bool` | `false` | no |
 | <a name="input_enable_jupyterhub"></a> [enable\_jupyterhub](#input\_enable\_jupyterhub) | Enable Jupyterhub Add-On | `bool` | `false` | no |
