@@ -5,7 +5,7 @@
 image:
   repository: public.ecr.aws/data-on-eks/mlflow
   pullPolicy: Always
-  tag: "latest"
+  tag: 2.7.1
 
 imagePullSecrets: []
 
