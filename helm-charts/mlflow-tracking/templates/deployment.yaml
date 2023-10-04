@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ include "mlflow-tracking-server.fullname" . }}
-  # namespace: {{ .Release.Namespace }}
   labels:
     {{- include "mlflow-tracking-server.labels" . | nindent 4 }}
 spec:

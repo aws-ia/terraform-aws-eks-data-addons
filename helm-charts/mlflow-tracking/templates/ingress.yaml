@@ -9,7 +9,7 @@ metadata:
     {{- include "mlflow-tracking-server.labels" . | nindent 4 }}
 {{- with .Values.ingress.annotations }}
   annotations:
-    {{ toYaml . | indent 4 }}
+    {{ toYaml . | nindent 4 }}
 {{- end }}
 spec:
   {{- if .Values.ingress.className }}

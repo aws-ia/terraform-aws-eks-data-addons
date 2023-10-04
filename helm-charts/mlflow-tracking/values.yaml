@@ -34,13 +34,15 @@ serviceAccount:
 
 ingress:
   enabled: false
-  className: ""
+  className: nginx
   annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # nginx.ingress.kubernetes.io/use-regex: "true"
   hosts:
-    - host: "*.local"
+    - host:
       paths:
         - path: /
-          pathType: ImplementationSpecific
+          pathType: Prefix
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:
