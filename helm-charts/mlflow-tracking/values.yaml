@@ -18,7 +18,7 @@ podAnnotations: {}
 replicaCount: 1
 
 service:
-  type: ClusterIP 
+  type: ClusterIP
   port: 5000
 
 serviceAccount:
