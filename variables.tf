@@ -259,3 +259,33 @@ variable "daskhub_helm_config" {
   type        = any
   default     = {}
 }
+
+#---------------------------------------------------
+# MLflow Tracking (Using Local Helm Chart)
+#---------------------------------------------------
+variable "enable_mlflow_tracking" {
+  description = "Enable MLflow Tracking add-on"
+  type        = bool
+  default     = false
+}
+
+variable "mlflow_tracking_helm_config" {
+  description = "MLflow Tracking add-on Helm Chart config"
+  type        = any
+  default     = {}
+}
+
+#---------------------------------------------------
+# EMR Runtime Flink Operator
+#---------------------------------------------------
+variable "enable_emr_flink_operator" {
+  description = "Enable the Flink Operator to run Flink application with EMR Runtime"
+  type        = bool
+  default     = false
+}
+
+variable "emr_flink_operator_helm_config" {
+  description = "Helm configuration for Flink Operator with EMR Runtime"
+  type        = any
+  default     = {}
+}
