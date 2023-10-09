@@ -66,7 +66,7 @@ variable "kubecost_helm_config" {
 #---------------------------------------------------
 # FLINK OPERATOR
 #---------------------------------------------------
-variable "enable_flink_operator" {
+variable "enable_emr_flink_operator" {
   description = "Enable Flink Operator add-on"
   type        = bool
   default     = false

@@ -3,7 +3,7 @@ locals {
   flink_operator_version = try(var.flink_operator_helm_config["version"], "1.4.0")
 }
 resource "helm_release" "flink_operator" {
-  count = var.enable_flink_operator ? 1 : 0
+  count = var.enable_emr_flink_operator ? 1 : 0
 
   name                       = try(var.flink_operator_helm_config["name"], local.flink_operator_name)
   repository                 = try(var.flink_operator_helm_config["repository"], "https://downloads.apache.org/flink/flink-kubernetes-operator-${local.flink_operator_version}")
