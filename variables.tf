@@ -289,3 +289,18 @@ variable "emr_flink_operator_helm_config" {
   type        = any
   default     = {}
 }
+
+#---------------------------------------------------
+# Apache Pinot
+#---------------------------------------------------
+variable "enable_pinot" {
+  description = "Enable Apache Pinot Add-On"
+  type        = bool
+  default     = false
+}
+
+variable "pinot_helm_config" {
+  description = "Apache Pinot Helm Chart config"
+  type        = any
+  default     = {}
+}

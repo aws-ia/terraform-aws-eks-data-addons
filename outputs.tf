@@ -77,3 +77,8 @@ output "dask_hub" {
   value       = try(helm_release.daskhub[0].metadata, null)
   description = "Dask Hub Helm Chart metadata"
 }
+
+output "pinot" {
+  value       = try(helm_release.pinot[0].metadata, null)
+  description = "Apache Pinot Helm Chart metadata"
+}
