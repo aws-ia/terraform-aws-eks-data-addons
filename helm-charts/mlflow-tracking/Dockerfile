@@ -9,7 +9,7 @@ FROM python:3.11-slim
 RUN apt-get update -y && \
   apt-get install -y --no-install-recommends build-essential libpq-dev
 
-# 
+#
 
 RUN python -m pip install --upgrade pip && \
   pip install --no-cache-dir mlflow[extras]==2.7.1 boto3 psycopg2-binary PyMySQL
