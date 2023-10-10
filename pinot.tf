@@ -7,7 +7,7 @@ locals {
 resource "helm_release" "pinot" {
   count = var.enable_pinot ? 1 : 0
 
-  name                       = try(var.pinot_helm_config, local.pinot_name)
+  name                       = try(var.pinot_helm_config["name"], local.pinot_name)
   repository                 = try(var.pinot_helm_config["repository"], local.pinot_repo)
   chart                      = try(var.pinot_helm_config["chart"], "pinot")
   version                    = try(var.pinot_helm_config["version"], local.pinot_version)
