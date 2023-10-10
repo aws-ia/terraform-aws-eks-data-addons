@@ -101,6 +101,7 @@ module "eks_data_addons" {
 | [helm_release.kuberay_operator](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 | [helm_release.mlflow_tracking](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 | [helm_release.nvidia_gpu_operator](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
+| [helm_release.pinot](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 | [helm_release.spark_history_server](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 | [helm_release.spark_operator](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 | [helm_release.strimzi_kafka_operator](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
@@ -135,6 +136,7 @@ module "eks_data_addons" {
 | <a name="input_enable_kuberay_operator"></a> [enable\_kuberay\_operator](#input\_enable\_kuberay\_operator) | Enable Kuberay Operator add-on | `bool` | `false` | no |
 | <a name="input_enable_mlflow_tracking"></a> [enable\_mlflow\_tracking](#input\_enable\_mlflow\_tracking) | Enable MLflow Tracking add-on | `bool` | `false` | no |
 | <a name="input_enable_nvidia_gpu_operator"></a> [enable\_nvidia\_gpu\_operator](#input\_enable\_nvidia\_gpu\_operator) | Enable NVIDIA GPU Operator add-on | `bool` | `false` | no |
+| <a name="input_enable_pinot"></a> [enable\_pinot](#input\_enable\_pinot) | Enable Apache Pinot Add-On | `bool` | `false` | no |
 | <a name="input_enable_spark_history_server"></a> [enable\_spark\_history\_server](#input\_enable\_spark\_history\_server) | Enable Spark History Server add-on | `bool` | `false` | no |
 | <a name="input_enable_spark_operator"></a> [enable\_spark\_operator](#input\_enable\_spark\_operator) | Enable Spark on K8s Operator add-on | `bool` | `false` | no |
 | <a name="input_enable_strimzi_kafka_operator"></a> [enable\_strimzi\_kafka\_operator](#input\_enable\_strimzi\_kafka\_operator) | Enable the Strimzi Kafka Operator | `bool` | `false` | no |
@@ -147,6 +149,7 @@ module "eks_data_addons" {
 | <a name="input_mlflow_tracking_helm_config"></a> [mlflow\_tracking\_helm\_config](#input\_mlflow\_tracking\_helm\_config) | MLflow Tracking add-on Helm Chart config | `any` | `{}` | no |
 | <a name="input_nvidia_gpu_operator_helm_config"></a> [nvidia\_gpu\_operator\_helm\_config](#input\_nvidia\_gpu\_operator\_helm\_config) | Helm configuration for NVIDIA GPU Operator | `any` | `{}` | no |
 | <a name="input_oidc_provider_arn"></a> [oidc\_provider\_arn](#input\_oidc\_provider\_arn) | The ARN of the cluster OIDC Provider | `string` | n/a | yes |
+| <a name="input_pinot_helm_config"></a> [pinot\_helm\_config](#input\_pinot\_helm\_config) | Apache Pinot Helm Chart config | `any` | `{}` | no |
 | <a name="input_spark_history_server_helm_config"></a> [spark\_history\_server\_helm\_config](#input\_spark\_history\_server\_helm\_config) | Helm configuration for Spark History Server | `any` | `{}` | no |
 | <a name="input_spark_operator_helm_config"></a> [spark\_operator\_helm\_config](#input\_spark\_operator\_helm\_config) | Helm configuration for Spark K8s Operator | `any` | `{}` | no |
 | <a name="input_strimzi_kafka_operator_helm_config"></a> [strimzi\_kafka\_operator\_helm\_config](#input\_strimzi\_kafka\_operator\_helm\_config) | Helm configuration for Strimzi Kafka Operator | `any` | `{}` | no |
@@ -168,6 +171,7 @@ module "eks_data_addons" {
 | <a name="output_kubecost"></a> [kubecost](#output\_kubecost) | Kubecost Helm Chart metadata |
 | <a name="output_kuberay_operator"></a> [kuberay\_operator](#output\_kuberay\_operator) | Kuberay Operator Helm Chart metadata |
 | <a name="output_nvidia_gpu_operator"></a> [nvidia\_gpu\_operator](#output\_nvidia\_gpu\_operator) | Nvidia GPU Operator Helm Chart metadata |
+| <a name="output_pinot"></a> [pinot](#output\_pinot) | Apache Pinot Helm Chart metadata |
 | <a name="output_spark_history_server"></a> [spark\_history\_server](#output\_spark\_history\_server) | Spark History Server Helm Chart metadata |
 | <a name="output_spark_operator"></a> [spark\_operator](#output\_spark\_operator) | Spark Operator Helm Chart metadata |
 | <a name="output_strimzi_kafka_operator"></a> [strimzi\_kafka\_operator](#output\_strimzi\_kafka\_operator) | Strimzi Kafka Operator Helm Chart metadata |
