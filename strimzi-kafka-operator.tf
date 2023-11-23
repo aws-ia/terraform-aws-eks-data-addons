@@ -4,7 +4,7 @@ resource "helm_release" "strimzi_kafka_operator" {
   name                       = try(var.strimzi_kafka_operator_helm_config["name"], "strimzi-operator")
   repository                 = try(var.strimzi_kafka_operator_helm_config["repository"], "https://strimzi.io/charts/")
   chart                      = try(var.strimzi_kafka_operator_helm_config["chart"], "strimzi-kafka-operator")
-  version                    = try(var.strimzi_kafka_operator_helm_config["version"], "0.35.0")
+  version                    = try(var.strimzi_kafka_operator_helm_config["version"], "0.38.0")
   timeout                    = try(var.strimzi_kafka_operator_helm_config["timeout"], 300)
   values                     = try(var.strimzi_kafka_operator_helm_config["values"], null)
   create_namespace           = try(var.strimzi_kafka_operator_helm_config["create_namespace"], true)
