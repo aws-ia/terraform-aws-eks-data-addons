@@ -1,6 +1,6 @@
 locals {
   spark_history_server_name       = "spark-history-server"
-  spark_history_server_repository = "https://hyper-mesh.github.io/spark-history-server"
+  spark_history_server_repository = "https://kubedai.github.io/spark-history-server"
   spark_history_server_version    = "1.0.0"
 
   spark_history_server_service_account = "spark-history-server-sa"
