@@ -304,3 +304,18 @@ variable "pinot_helm_config" {
   type        = any
   default     = {}
 }
+
+#---------------------------------------------------
+# Karpenter Resources
+#---------------------------------------------------
+variable "enable_karpenter_resources" {
+  description = "Enable Karpenter Resources (NodePool and EC2NodeClass)"
+  type        = bool
+  default     = false
+}
+
+variable "karpenter_resources_helm_config" {
+  description = "MLflow Tracking add-on Helm Chart config"
+  type        = any
+  default     = {}
+}
