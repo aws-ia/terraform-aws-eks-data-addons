@@ -97,6 +97,7 @@ module "eks_data_addons" {
 | [helm_release.emr_spark_operator](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 | [helm_release.flink_operator](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 | [helm_release.jupyterhub](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
+| [helm_release.karpenter_resources](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 | [helm_release.kubecost](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 | [helm_release.kuberay_operator](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 | [helm_release.mlflow_tracking](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
@@ -132,6 +133,7 @@ module "eks_data_addons" {
 | <a name="input_enable_emr_spark_operator"></a> [enable\_emr\_spark\_operator](#input\_enable\_emr\_spark\_operator) | Enable the Spark Operator to submit jobs with EMR Runtime | `bool` | `false` | no |
 | <a name="input_enable_flink_operator"></a> [enable\_flink\_operator](#input\_enable\_flink\_operator) | Enable Flink Operator add-on | `bool` | `false` | no |
 | <a name="input_enable_jupyterhub"></a> [enable\_jupyterhub](#input\_enable\_jupyterhub) | Enable Jupyterhub Add-On | `bool` | `false` | no |
+| <a name="input_enable_karpenter_resources"></a> [enable\_karpenter\_resources](#input\_enable\_karpenter\_resources) | Enable Karpenter Resources (NodePool and EC2NodeClass) | `bool` | `false` | no |
 | <a name="input_enable_kubecost"></a> [enable\_kubecost](#input\_enable\_kubecost) | Enable Kubecost add-on | `bool` | `false` | no |
 | <a name="input_enable_kuberay_operator"></a> [enable\_kuberay\_operator](#input\_enable\_kuberay\_operator) | Enable Kuberay Operator add-on | `bool` | `false` | no |
 | <a name="input_enable_mlflow_tracking"></a> [enable\_mlflow\_tracking](#input\_enable\_mlflow\_tracking) | Enable MLflow Tracking add-on | `bool` | `false` | no |
@@ -144,6 +146,7 @@ module "eks_data_addons" {
 | <a name="input_enable_yunikorn"></a> [enable\_yunikorn](#input\_enable\_yunikorn) | Enable Apache YuniKorn K8s scheduler add-on | `bool` | `false` | no |
 | <a name="input_flink_operator_helm_config"></a> [flink\_operator\_helm\_config](#input\_flink\_operator\_helm\_config) | Flink Operator Helm Chart config | `any` | `{}` | no |
 | <a name="input_jupyterhub_helm_config"></a> [jupyterhub\_helm\_config](#input\_jupyterhub\_helm\_config) | Helm configuration for JupyterHub | `any` | `{}` | no |
+| <a name="input_karpenter_resources_helm_config"></a> [karpenter\_resources\_helm\_config](#input\_karpenter\_resources\_helm\_config) | Karpenter Resources Helm Chart config | `any` | `{}` | no |
 | <a name="input_kubecost_helm_config"></a> [kubecost\_helm\_config](#input\_kubecost\_helm\_config) | Kubecost Helm Chart config | `any` | `{}` | no |
 | <a name="input_kuberay_operator_helm_config"></a> [kuberay\_operator\_helm\_config](#input\_kuberay\_operator\_helm\_config) | Helm configuration for Kuberay Operator | `any` | `{}` | no |
 | <a name="input_mlflow_tracking_helm_config"></a> [mlflow\_tracking\_helm\_config](#input\_mlflow\_tracking\_helm\_config) | MLflow Tracking add-on Helm Chart config | `any` | `{}` | no |
