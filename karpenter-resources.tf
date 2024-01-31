@@ -1,51 +1,48 @@
 locals {
-  name    = "karpenter-resources"
-  version = "0.0.1"
+  namespace = "karpenter-resources"
+  version   = "0.0.1"
 }
 
 resource "helm_release" "karpenter_resources" {
-  count                      = var.enable_karpenter_resources ? 1 : 0
-  name                       = try(var.karpenter_resources_helm_config["name"], local.name)
-  repository                 = try(var.karpenter_resources_helm_config["repository"], null)
-  chart                      = try(var.karpenter_resources_helm_config["chart"], "${path.module}/helm-charts/karpenter-resources")
-  version                    = try(var.karpenter_resources_helm_config["version"], local.version)
-  timeout                    = try(var.karpenter_resources_helm_config["timeout"], 300)
-  values                     = try(var.karpenter_resources_helm_config["values"], null)
-  create_namespace           = try(var.karpenter_resources_helm_config["create_namespace"], true)
-  namespace                  = try(var.karpenter_resources_helm_config["namespace"], local.name)
-  lint                       = try(var.karpenter_resources_helm_config["lint"], false)
-  description                = try(var.karpenter_resources_helm_config["description"], "")
-  repository_key_file        = try(var.karpenter_resources_helm_config["repository_key_file"], "")
-  repository_cert_file       = try(var.karpenter_resources_helm_config["repository_cert_file"], "")
-  repository_username        = try(var.karpenter_resources_helm_config["repository_username"], "")
-  repository_password        = try(var.karpenter_resources_helm_config["repository_password"], "")
-  verify                     = try(var.karpenter_resources_helm_config["verify"], false)
-  keyring                    = try(var.karpenter_resources_helm_config["keyring"], "")
-  disable_webhooks           = try(var.karpenter_resources_helm_config["disable_webhooks"], false)
-  reuse_values               = try(var.karpenter_resources_helm_config["reuse_values"], false)
-  reset_values               = try(var.karpenter_resources_helm_config["reset_values"], false)
-  force_update               = try(var.karpenter_resources_helm_config["force_update"], false)
-  recreate_pods              = try(var.karpenter_resources_helm_config["recreate_pods"], false)
-  cleanup_on_fail            = try(var.karpenter_resources_helm_config["cleanup_on_fail"], false)
-  max_history                = try(var.karpenter_resources_helm_config["max_history"], 0)
-  atomic                     = try(var.karpenter_resources_helm_config["atomic"], false)
-  skip_crds                  = try(var.karpenter_resources_helm_config["skip_crds"], false)
-  render_subchart_notes      = try(var.karpenter_resources_helm_config["render_subchart_notes"], true)
-  disable_openapi_validation = try(var.karpenter_resources_helm_config["disable_openapi_validation"], false)
-  wait                       = try(var.karpenter_resources_helm_config["wait"], true)
-  wait_for_jobs              = try(var.karpenter_resources_helm_config["wait_for_jobs"], false)
-  dependency_update          = try(var.karpenter_resources_helm_config["dependency_update"], false)
-  replace                    = try(var.karpenter_resources_helm_config["replace"], false)
-
+  for_each                   = var.enable_karpenter_resources ? var.karpenter_resources_helm_config : {}
+  name                       = each.key
+  repository                 = try(each.value["repository"], null)
+  chart                      = try(each.value["chart"], "${path.module}/helm-charts/karpenter-resources")
+  version                    = try(each.value["version"], local.version)
+  timeout                    = try(each.value["timeout"], 300)
+  values                     = try(each.value["values"], null)
+  create_namespace           = try(each.value["create_namespace"], true)
+  namespace                  = try(each.value["namespace"], local.namespace)
+  lint                       = try(each.value["lint"], false)
+  description                = try(each.value["description"], "")
+  repository_key_file        = try(each.value["repository_key_file"], "")
+  repository_cert_file       = try(each.value["repository_cert_file"], "")
+  repository_username        = try(each.value["repository_username"], "")
+  repository_password        = try(each.value["repository_password"], "")
+  verify                     = try(each.value["verify"], false)
+  keyring                    = try(each.value["keyring"], "")
+  disable_webhooks           = try(each.value["disable_webhooks"], false)
+  reuse_values               = try(each.value["reuse_values"], false)
+  reset_values               = try(each.value["reset_values"], false)
+  force_update               = try(each.value["force_update"], false)
+  recreate_pods              = try(each.value["recreate_pods"], false)
+  cleanup_on_fail            = try(each.value["cleanup_on_fail"], false)
+  max_history                = try(each.value["max_history"], 0)
+  atomic                     = try(each.value["atomic"], false)
+  skip_crds                  = try(each.value["skip_crds"], false)
+  render_subchart_notes      = try(each.value["render_subchart_notes"], true)
+  disable_openapi_validation = try(each.value["disable_openapi_validation"], false)
+  wait                       = try(each.value["wait"], true)
+  wait_for_jobs              = try(each.value["wait_for_jobs"], false)
+  dependency_update          = try(each.value["dependency_update"], false)
+  replace                    = try(each.value["replace"], false)
 
   postrender {
-    binary_path = try(var.karpenter_resources_helm_config["postrender"], "")
+    binary_path = try(each.value["postrender"], "")
   }
 
   dynamic "set" {
-    iterator = each_item
-    for_each = try(var.karpenter_resources_helm_config["set"], [])
-
+    for_each = try(each.value["set"], [])
     content {
       name  = each_item.value.name
       value = each_item.value.value
@@ -54,9 +51,7 @@ resource "helm_release" "karpenter_resources" {
   }
 
   dynamic "set_sensitive" {
-    iterator = each_item
-    for_each = try(var.karpenter_resources_helm_config["set_sensitive"], [])
-
+    for_each = try(each.value["set_sensitive"], [])
     content {
       name  = each_item.value.name
       value = each_item.value.value
