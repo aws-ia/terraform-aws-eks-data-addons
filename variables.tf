@@ -315,7 +315,7 @@ variable "enable_karpenter_resources" {
 }
 
 variable "karpenter_resources_helm_config" {
-  description = "MLflow Tracking add-on Helm Chart config"
+  description = "Karpenter Resources Helm Chart config"
   type        = any
   default     = {}
 }
