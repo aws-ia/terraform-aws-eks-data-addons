@@ -24,6 +24,7 @@ ec2NodeClass:
     deleteOnTermination: true
   detailedMonitoring: true
   userData:
+  instanceStorePolicy:
 
 # NodePool specific values
 nodePool:
