@@ -49,6 +49,9 @@ spec:
         encrypted: {{ .Values.ec2NodeClass.blockDevice.encrypted }}
         deleteOnTermination: {{ .Values.ec2NodeClass.blockDevice.deleteOnTermination }}
   detailedMonitoring: {{ .Values.ec2NodeClass.detailedMonitoring }}
+  {{- if .Values.ec2NodeClass.instanceStorePolicy }}
+  instanceStorePolicy: {{ .Values.ec2NodeClass.instanceStorePolicy }}
+  {{- end }}
   {{- if .Values.ec2NodeClass.userData }}
   userData: |
     {{- .Values.ec2NodeClass.userData | nindent 4 }}
