@@ -319,3 +319,18 @@ variable "karpenter_resources_helm_config" {
   type        = any
   default     = {}
 }
+
+#---------------------------------------------------
+# NVIDIA Device Plugin
+#---------------------------------------------------
+variable "enable_nvidia_device_plugin" {
+  description = "Enable NVIDIA Device Plugin add-on"
+  type        = bool
+  default     = false
+}
+
+variable "nvidia_device_plugin_helm_config" {
+  description = "NVIDIA Device Plugin Helm Chart config"
+  type        = any
+  default     = {}
+}
