@@ -107,6 +107,7 @@ module "eks_data_addons" {
 | [helm_release.spark_history_server](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 | [helm_release.spark_operator](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 | [helm_release.strimzi_kafka_operator](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
+| [helm_release.trino](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 | [helm_release.volcano](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 | [helm_release.yunikorn](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 | [aws_partition.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/partition) | data source |
@@ -144,6 +145,7 @@ module "eks_data_addons" {
 | <a name="input_enable_spark_history_server"></a> [enable\_spark\_history\_server](#input\_enable\_spark\_history\_server) | Enable Spark History Server add-on | `bool` | `false` | no |
 | <a name="input_enable_spark_operator"></a> [enable\_spark\_operator](#input\_enable\_spark\_operator) | Enable Spark on K8s Operator add-on | `bool` | `false` | no |
 | <a name="input_enable_strimzi_kafka_operator"></a> [enable\_strimzi\_kafka\_operator](#input\_enable\_strimzi\_kafka\_operator) | Enable the Strimzi Kafka Operator | `bool` | `false` | no |
+| <a name="input_enable_trino"></a> [enable\_trino](#input\_enable\_trino) | Enable Trino add-on | `bool` | `false` | no |
 | <a name="input_enable_volcano"></a> [enable\_volcano](#input\_enable\_volcano) | Enable volcano scheduler add-on | `bool` | `false` | no |
 | <a name="input_enable_yunikorn"></a> [enable\_yunikorn](#input\_enable\_yunikorn) | Enable Apache YuniKorn K8s scheduler add-on | `bool` | `false` | no |
 | <a name="input_flink_operator_helm_config"></a> [flink\_operator\_helm\_config](#input\_flink\_operator\_helm\_config) | Flink Operator Helm Chart config | `any` | `{}` | no |
@@ -159,6 +161,7 @@ module "eks_data_addons" {
 | <a name="input_spark_history_server_helm_config"></a> [spark\_history\_server\_helm\_config](#input\_spark\_history\_server\_helm\_config) | Helm configuration for Spark History Server | `any` | `{}` | no |
 | <a name="input_spark_operator_helm_config"></a> [spark\_operator\_helm\_config](#input\_spark\_operator\_helm\_config) | Helm configuration for Spark K8s Operator | `any` | `{}` | no |
 | <a name="input_strimzi_kafka_operator_helm_config"></a> [strimzi\_kafka\_operator\_helm\_config](#input\_strimzi\_kafka\_operator\_helm\_config) | Helm configuration for Strimzi Kafka Operator | `any` | `{}` | no |
+| <a name="input_trino_helm_config"></a> [trino\_helm\_config](#input\_trino\_helm\_config) | Trino Helm Chart config | `any` | `{}` | no |
 | <a name="input_volcano_helm_config"></a> [volcano\_helm\_config](#input\_volcano\_helm\_config) | Volcano scheduler add-on configurations | `any` | `{}` | no |
 | <a name="input_yunikorn_helm_config"></a> [yunikorn\_helm\_config](#input\_yunikorn\_helm\_config) | Helm configuration for Apache YuniKorn | `any` | `{}` | no |
 
