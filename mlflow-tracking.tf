@@ -4,7 +4,7 @@ resource "helm_release" "mlflow_tracking" {
   name                       = try(var.mlflow_tracking_helm_config["name"], "mlflow-tracking")
   repository                 = try(var.mlflow_tracking_helm_config["repository"], null)
   chart                      = try(var.mlflow_tracking_helm_config["chart"], "${path.module}/helm-charts/mlflow-tracking")
-  version                    = try(var.mlflow_tracking_helm_config["version"], "0.1.0")
+  version                    = try(var.mlflow_tracking_helm_config["version"], "0.2.0")
   timeout                    = try(var.mlflow_tracking_helm_config["timeout"], 300)
   values                     = try(var.mlflow_tracking_helm_config["values"], null)
   create_namespace           = try(var.mlflow_tracking_helm_config["create_namespace"], true)
