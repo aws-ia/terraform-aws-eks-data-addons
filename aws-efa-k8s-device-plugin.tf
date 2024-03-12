@@ -2,9 +2,9 @@ resource "helm_release" "aws_efa_k8s_device_plugin" {
   count = var.enable_aws_efa_k8s_device_plugin ? 1 : 0
 
   name                       = try(var.aws_efa_k8s_device_plugin_helm_config["name"], "aws-efa-k8s-device-plugin")
-  repository                 = try(var.aws_efa_k8s_device_plugin_helm_config["repository"], null)
-  chart                      = try(var.aws_efa_k8s_device_plugin_helm_config["chart"], "${path.module}/helm-charts/aws-efa-k8s-device-plugin")
-  version                    = try(var.aws_efa_k8s_device_plugin_helm_config["version"], "0.1.0")
+  repository                 = try(var.aws_efa_k8s_device_plugin_helm_config["repository"], "https://aws.github.io/eks-charts")
+  chart                      = try(var.aws_efa_k8s_device_plugin_helm_config["chart"], "aws-efa-k8s-device-plugin")
+  version                    = try(var.aws_efa_k8s_device_plugin_helm_config["version"], "v0.4.4")
   timeout                    = try(var.aws_efa_k8s_device_plugin_helm_config["timeout"], 300)
   values                     = try(var.aws_efa_k8s_device_plugin_helm_config["values"], null)
   create_namespace           = try(var.aws_efa_k8s_device_plugin_helm_config["create_namespace"], false)
