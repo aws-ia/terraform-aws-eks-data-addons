@@ -3,7 +3,7 @@
 # This docker image is available at public.ecr.aws/data-on-eks/mlflow
 
 
-FROM python:3.11-slim
+FROM python:3.12-slim
 
 # Build dependencies
 RUN apt-get update -y && \
@@ -12,7 +12,7 @@ RUN apt-get update -y && \
 #
 
 RUN python -m pip install --upgrade pip && \
-  pip install --no-cache-dir mlflow[extras]==2.7.1 boto3 psycopg2-binary PyMySQL
+  pip install --no-cache-dir mlflow[extras]==2.11.1 boto3 psycopg2-binary PyMySQL
 
 EXPOSE 5000
 
