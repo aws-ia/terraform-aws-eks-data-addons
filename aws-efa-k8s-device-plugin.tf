@@ -1,12 +1,27 @@
+locals {
+  aws_efa_k8s_device_plugin_default_values = <<-EOT
+tolerations:
+  - operator: Exists    # DaemonSet is tolerant of any taints, regardless of the key or value of the taint.
+  - key: CriticalAddonsOnly
+    operator: Exists
+EOT
+
+  aws_efa_k8s_device_plugin_merged_values_yaml = yamlencode(merge(
+    yamldecode(local.aws_efa_k8s_device_plugin_default_values),
+    try(yamldecode(var.aws_efa_k8s_device_plugin_helm_config.values[0]), {})
+  ))
+}
+
+
 resource "helm_release" "aws_efa_k8s_device_plugin" {
   count = var.enable_aws_efa_k8s_device_plugin ? 1 : 0
 
   name                       = try(var.aws_efa_k8s_device_plugin_helm_config["name"], "aws-efa-k8s-device-plugin")
-  repository                 = try(var.aws_efa_k8s_device_plugin_helm_config["repository"], null)
-  chart                      = try(var.aws_efa_k8s_device_plugin_helm_config["chart"], "${path.module}/helm-charts/aws-efa-k8s-device-plugin")
-  version                    = try(var.aws_efa_k8s_device_plugin_helm_config["version"], "0.1.0")
+  repository                 = try(var.aws_efa_k8s_device_plugin_helm_config["repository"], "https://aws.github.io/eks-charts")
+  chart                      = try(var.aws_efa_k8s_device_plugin_helm_config["chart"], "aws-efa-k8s-device-plugin")
+  version                    = try(var.aws_efa_k8s_device_plugin_helm_config["version"], "v0.4.4")
   timeout                    = try(var.aws_efa_k8s_device_plugin_helm_config["timeout"], 300)
-  values                     = try(var.aws_efa_k8s_device_plugin_helm_config["values"], null)
+  values                     = [local.aws_efa_k8s_device_plugin_merged_values_yaml]
   create_namespace           = try(var.aws_efa_k8s_device_plugin_helm_config["create_namespace"], false)
   namespace                  = try(var.aws_efa_k8s_device_plugin_helm_config["namespace"], "kube-system")
   lint                       = try(var.aws_efa_k8s_device_plugin_helm_config["lint"], false)
