@@ -19,15 +19,17 @@ spec:
         name: {{ .Values.name }}
       {{- with .Values.nodePool.taints }}
       taints:
-        {{- toYaml . | nindent 8 }}
+      {{- toYaml . | nindent 8 }}
       {{- end }}
       {{- with .Values.nodePool.requirements }}
       requirements:
-        {{- toYaml . | nindent 8 }}
+      {{- toYaml . | nindent 8 }}
       {{- end }}
   disruption:
     consolidationPolicy: {{ .Values.nodePool.disruption.consolidationPolicy }}
-    consolidateAfter: {{ .Values.nodePool.disruption.consolidateAfter }}
+    {{- if eq .Values.nodePool.disruption.consolidationPolicy "WhenEmpty" }}
+    consolidateAfter: {{ .Values.nodePool.disruption.consolidateAfter }} # Only defined if consolidationPolicy is WhenEmpty
+    {{- end }}
     expireAfter: {{ .Values.nodePool.disruption.expireAfter }}
   limits:
     cpu: {{ .Values.nodePool.limits.cpu }}
