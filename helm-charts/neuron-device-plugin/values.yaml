@@ -38,8 +38,7 @@ nodeSelector: {}
 image:
   repository: public.ecr.aws/neuron/neuron-device-plugin
   pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is the chart appVersion.
-  tag: "2.14.4.0"
+  tag: "2.19.16.0"
 
 tolerations:
   - operator: Exists    # DaemonSet is tolerant of any taints, regardless of the key or value of the taint.
@@ -48,7 +47,12 @@ tolerations:
   - key: aws.amazon.com/neuron
     operator: Exists
     effect: NoSchedule
-
+  - key: aws.amazon.com/neuroncore
+    operator: Exists
+    effect: NoSchedule
+  - key: aws.amazon.com/neurondevice
+    operator: Exists
+    effect: NoSchedule
 affinity:
   nodeAffinity:
     requiredDuringSchedulingIgnoredDuringExecution:
