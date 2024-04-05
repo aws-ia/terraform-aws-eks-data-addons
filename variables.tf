@@ -349,3 +349,18 @@ variable "trino_helm_config" {
   type        = any
   default     = {}
 }
+
+#---------------------------------------------------
+# Apache Superset
+#---------------------------------------------------
+variable "enable_superset" {
+  description = "Enable Apache Supeset add-on"
+  type        = bool
+  default     = false
+}
+
+variable "superset_helm_config" {
+  description = "Apache Supeset Helm Chart config"
+  type        = any
+  default     = {}
+}
