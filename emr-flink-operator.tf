@@ -50,7 +50,10 @@ resource "helm_release" "emr_flink_operator" {
   dependency_update          = try(var.emr_flink_operator_helm_config["dependency_update"], false)
   replace                    = try(var.emr_flink_operator_helm_config["replace"], false)
   
-
+  set {
+    name  = "emrContainers.operatorExecutionRoleArn"
+    value = "arn:aws:iam::681921237057:role/emr-eks-flink-operator-20240406012025930700000006"
+  }
 
   postrender {
     binary_path = try(var.emr_flink_operator_helm_config["postrender"], "")
