@@ -1,6 +1,6 @@
 locals {
   emr_flink_operator_name = "flink-kubernetes-operator"
-  emr_release_label       = "emr-6.13.0-flink-k8s-operator-latest"
+  emr_release_label       = "emr-7.1.0-flink-k8s-operator-latest"
 
   emr_flink_operator_values = yamlencode(merge(
     yamldecode(<<EOT
@@ -8,6 +8,7 @@ locals {
 emrContainers:
   awsRegion: ${local.region}
   emrReleaseLabel: ${local.emr_release_label}
+
 EOT
     ),
     try(yamldecode(var.emr_flink_operator_helm_config.values[0]), {})
@@ -20,7 +21,7 @@ resource "helm_release" "emr_flink_operator" {
   name                       = try(var.emr_flink_operator_helm_config["name"], local.emr_flink_operator_name)
   repository                 = try(var.emr_flink_operator_helm_config["repository"], "oci://${local.account_region_map[local.region]}.dkr.ecr.${local.region}.amazonaws.com")
   chart                      = try(var.emr_flink_operator_helm_config["chart"], local.emr_flink_operator_name)
-  version                    = try(var.emr_flink_operator_helm_config["version"], "6.13.0")
+  version                    = try(var.emr_flink_operator_helm_config["version"], "7.1.0")
   timeout                    = try(var.emr_flink_operator_helm_config["timeout"], 300)
   values                     = try(var.emr_flink_operator_helm_config["values"], [local.emr_flink_operator_values])
   create_namespace           = try(var.emr_flink_operator_helm_config["create_namespace"], true)
@@ -48,6 +49,11 @@ resource "helm_release" "emr_flink_operator" {
   wait_for_jobs              = try(var.emr_flink_operator_helm_config["wait_for_jobs"], false)
   dependency_update          = try(var.emr_flink_operator_helm_config["dependency_update"], false)
   replace                    = try(var.emr_flink_operator_helm_config["replace"], false)
+
+  set {
+    name  = "emrContainers.operatorExecutionRoleArn"
+    value = try(var.emr_flink_operator_helm_config["operatorExecutionRoleArn"], null)
+  }
 
   postrender {
     binary_path = try(var.emr_flink_operator_helm_config["postrender"], "")
