@@ -52,7 +52,7 @@ resource "helm_release" "emr_flink_operator" {
   
   set {
     name  = "emrContainers.operatorExecutionRoleArn"
-    value = "arn:aws:iam::681921237057:role/emr-eks-flink-operator-20240406012025930700000006"
+    value = try(var.emr_flink_operator_helm_config["operatorExecutionRoleArn"], null)
   }
 
   postrender {
