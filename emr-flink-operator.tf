@@ -8,6 +8,7 @@ locals {
 emrContainers:
   awsRegion: ${local.region}
   emrReleaseLabel: ${local.emr_release_label}
+  operatorExecutionRoleArn: "yyyyy"
   
   
   
@@ -54,7 +55,7 @@ resource "helm_release" "emr_flink_operator" {
   
   set {
     name  = "emrContainers.operatorExecutionRoleArn"
-    value = try(var.emr_flink_operator_helm_config["operatorExecutionRoleArn"], "xxxx")
+    value = "xxxxx"
   }
 
   postrender {
