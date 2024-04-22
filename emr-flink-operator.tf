@@ -8,7 +8,7 @@ locals {
 emrContainers:
   awsRegion: ${local.region}
   emrReleaseLabel: ${local.emr_release_label}
-  operatorExecutionRoleArn: "yyyyy"
+  operatorExecutionRoleArn: yyyyy
   
   
   
