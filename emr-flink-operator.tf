@@ -8,7 +8,7 @@ locals {
 emrContainers:
   awsRegion: ${local.region}
   emrReleaseLabel: ${local.emr_release_label}
-  
+
 EOT
     ),
     try(yamldecode(var.emr_flink_operator_helm_config.values[0]), {})
@@ -17,7 +17,7 @@ EOT
 
 resource "helm_release" "emr_flink_operator" {
   count = var.enable_emr_flink_operator ? 1 : 0
-  
+
   name                       = try(var.emr_flink_operator_helm_config["name"], local.emr_flink_operator_name)
   repository                 = try(var.emr_flink_operator_helm_config["repository"], "oci://${local.account_region_map[local.region]}.dkr.ecr.${local.region}.amazonaws.com")
   chart                      = try(var.emr_flink_operator_helm_config["chart"], local.emr_flink_operator_name)
@@ -49,7 +49,7 @@ resource "helm_release" "emr_flink_operator" {
   wait_for_jobs              = try(var.emr_flink_operator_helm_config["wait_for_jobs"], false)
   dependency_update          = try(var.emr_flink_operator_helm_config["dependency_update"], false)
   replace                    = try(var.emr_flink_operator_helm_config["replace"], false)
-  
+
   set {
     name  = "emrContainers.operatorExecutionRoleArn"
     value = try(var.emr_flink_operator_helm_config["operatorExecutionRoleArn"], null)
