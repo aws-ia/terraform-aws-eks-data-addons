@@ -364,3 +364,16 @@ variable "superset_helm_config" {
   type        = any
   default     = {}
 }
+
+variable "enable_nvidia_triton_server" {
+  description = "Enable NVIDIA Triton Server add-on"
+  type        = bool
+  default     = false
+}
+
+variable "nvidia_triton_server_helm_config" {
+  description = "Helm configuration for NVIDIA Triton Server"
+  type        = any
+  default     = {}
+
+}

@@ -103,6 +103,7 @@ module "eks_data_addons" {
 | [helm_release.mlflow_tracking](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 | [helm_release.nvidia_device_plugin](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 | [helm_release.nvidia_gpu_operator](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
+| [helm_release.nvidia_triton_server](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 | [helm_release.pinot](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 | [helm_release.spark_history_server](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 | [helm_release.spark_operator](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
@@ -142,6 +143,7 @@ module "eks_data_addons" {
 | <a name="input_enable_mlflow_tracking"></a> [enable\_mlflow\_tracking](#input\_enable\_mlflow\_tracking) | Enable MLflow Tracking add-on | `bool` | `false` | no |
 | <a name="input_enable_nvidia_device_plugin"></a> [enable\_nvidia\_device\_plugin](#input\_enable\_nvidia\_device\_plugin) | Enable NVIDIA Device Plugin add-on | `bool` | `false` | no |
 | <a name="input_enable_nvidia_gpu_operator"></a> [enable\_nvidia\_gpu\_operator](#input\_enable\_nvidia\_gpu\_operator) | Enable NVIDIA GPU Operator add-on | `bool` | `false` | no |
+| <a name="input_enable_nvidia_triton_server"></a> [enable\_nvidia\_triton\_server](#input\_enable\_nvidia\_triton\_server) | Enable NVIDIA Triton Server add-on | `bool` | `false` | no |
 | <a name="input_enable_pinot"></a> [enable\_pinot](#input\_enable\_pinot) | Enable Apache Pinot Add-On | `bool` | `false` | no |
 | <a name="input_enable_spark_history_server"></a> [enable\_spark\_history\_server](#input\_enable\_spark\_history\_server) | Enable Spark History Server add-on | `bool` | `false` | no |
 | <a name="input_enable_spark_operator"></a> [enable\_spark\_operator](#input\_enable\_spark\_operator) | Enable Spark on K8s Operator add-on | `bool` | `false` | no |
@@ -158,6 +160,7 @@ module "eks_data_addons" {
 | <a name="input_mlflow_tracking_helm_config"></a> [mlflow\_tracking\_helm\_config](#input\_mlflow\_tracking\_helm\_config) | MLflow Tracking add-on Helm Chart config | `any` | `{}` | no |
 | <a name="input_nvidia_device_plugin_helm_config"></a> [nvidia\_device\_plugin\_helm\_config](#input\_nvidia\_device\_plugin\_helm\_config) | NVIDIA Device Plugin Helm Chart config | `any` | `{}` | no |
 | <a name="input_nvidia_gpu_operator_helm_config"></a> [nvidia\_gpu\_operator\_helm\_config](#input\_nvidia\_gpu\_operator\_helm\_config) | Helm configuration for NVIDIA GPU Operator | `any` | `{}` | no |
+| <a name="input_nvidia_triton_server_helm_config"></a> [nvidia\_triton\_server\_helm\_config](#input\_nvidia\_triton\_server\_helm\_config) | Helm configuration for NVIDIA Triton Server | `any` | `{}` | no |
 | <a name="input_oidc_provider_arn"></a> [oidc\_provider\_arn](#input\_oidc\_provider\_arn) | The ARN of the cluster OIDC Provider | `string` | n/a | yes |
 | <a name="input_pinot_helm_config"></a> [pinot\_helm\_config](#input\_pinot\_helm\_config) | Apache Pinot Helm Chart config | `any` | `{}` | no |
 | <a name="input_spark_history_server_helm_config"></a> [spark\_history\_server\_helm\_config](#input\_spark\_history\_server\_helm\_config) | Helm configuration for Spark History Server | `any` | `{}` | no |
