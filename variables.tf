@@ -375,5 +375,4 @@ variable "nvidia_triton_server_helm_config" {
   description = "Helm configuration for NVIDIA Triton Server"
   type        = any
   default     = {}
-
 }

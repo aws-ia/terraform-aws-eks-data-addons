@@ -16,7 +16,7 @@ service:
     http: 8000
     grpc: 8001
     metrics: 8002
-  
+
   metricsPort: 8080
 
 # Service account settings (Refer to Kubernetes documentation for details)
@@ -26,7 +26,7 @@ serviceAccount:
   labels: {}
   name: ""
 
-# Ingress Settings (Configure external access to Triton)  
+# Ingress Settings (Configure external access to Triton)
 ingress:
   enabled: true
   className: nginx
@@ -98,11 +98,11 @@ secretEnvironment:
 
 resources:
   requests:  # Minimum resource requests for each Triton pod
-    cpu: "100m" 
+    cpu: "100m"
     memory: "512Mi"
-    nvidia.com/gpu: 1  
+    nvidia.com/gpu: 1
   limits:  # Maximum resource limits
-    cpu: "500m" 
+    cpu: "500m"
     memory: "2Gi"
     nvidia.com/gpu: 1
 
@@ -117,4 +117,4 @@ hpa:
 # Advanced Configuration (If needed)
 nodeSelector: {} # Schedule pods on specific nodes
 tolerations: []  # Allow pods to be scheduled on nodes with 'taints'
-affinity: {}     # Influence pod scheduling based on node or pod labels 
+affinity: {}     # Influence pod scheduling based on node or pod labels
