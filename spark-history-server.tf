@@ -25,6 +25,12 @@ sparkConf: |-
   spark.eventLog.enabled=true
   spark.history.ui.port=18080
 
+image:
+  repository: public.ecr.aws/data-on-eks/spark3.3.1-web-ui
+  pullPolicy: Always
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: latest
+
 resources:
   limits:
     cpu: 200m
