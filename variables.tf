@@ -364,3 +364,18 @@ variable "superset_helm_config" {
   type        = any
   default     = {}
 }
+
+#---------------------------------------------------
+# Qdrant
+#---------------------------------------------------
+variable "enable_qdrant" {
+  description = "Enable Qdrant Vector Database add-on"
+  type        = bool
+  default     = false
+}
+
+variable "qdrant_helm_config" {
+  description = "Helm configuration for Qdrant"
+  type        = any
+  default     = {}
+}
