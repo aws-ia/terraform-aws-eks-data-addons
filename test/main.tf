@@ -70,35 +70,37 @@ module "doeks_data_addons" {
   source            = "../"
   oidc_provider_arn = module.eks.oidc_provider_arn
 
-  enable_airflow                   = true
+  enable_airflow                   = false
   enable_aws_efa_k8s_device_plugin = true
   enable_aws_neuron_device_plugin  = true
-  enable_emr_spark_operator        = true
-  enable_flink_operator            = true
-  flink_operator_helm_config       = {
-     version = "1.8.0"
-  }
-  enable_jupyterhub                = true
-  enable_kubecost                  = true
-  kubecost_helm_config = {
-    repository_username = data.aws_ecrpublic_authorization_token.token.user_name
-    repository_password = data.aws_ecrpublic_authorization_token.token.password
-  }
-  enable_nvidia_gpu_operator       = true
-  enable_kuberay_operator          = true
-  enable_spark_history_server      = true
+
+  enable_emr_spark_operator        = false
   emr_spark_operator_helm_config = {
     repository_username = data.aws_ecr_authorization_token.token.user_name
     repository_password = data.aws_ecr_authorization_token.token.password
   }
 
+  enable_flink_operator            = true
+  flink_operator_helm_config       = {
+     version = "1.8.0"
+  }
+  enable_jupyterhub                = true
+  enable_kubecost                  = false   // kubecost not working with prometheus stack as node-exporter already exists
+  kubecost_helm_config = {
+    repository_username = data.aws_ecrpublic_authorization_token.token.user_name
+    repository_password = data.aws_ecrpublic_authorization_token.token.password
+  }
+  enable_nvidia_gpu_operator       = true
+  enable_kuberay_operator          = false
+  enable_spark_history_server      = false
+
   enable_spark_operator = true
   # With custom values
   spark_operator_helm_config = {
-    values = [templatefile("${path.module}/helm-values/spark-operator-values.yaml", {})]
+    values  = [templatefile("${path.module}/helm-values/spark-operator-values.yaml", {})]
   }
-  enable_strimzi_kafka_operator = true
-  enable_yunikorn               = true
+  enable_strimzi_kafka_operator = false
+  enable_yunikorn               = false
 
   enable_qdrant                 = true
   
@@ -115,30 +117,12 @@ module "eks_blueprints_addons" {
 
   enable_aws_load_balancer_controller    = true
   enable_kube_prometheus_stack           = true
+  kube_prometheus_stack = {
+    values  = [templatefile("${path.module}/helm-values/kube-prometheus-values.yaml", {})]
+  }
   enable_metrics_server                  = true
   enable_cert_manager                    = true
-
-  enable_karpenter                  = true
-  karpenter_enable_spot_termination = true
-  karpenter_node = {
-    iam_role_additional_policies = {
-      AmazonSSMManagedInstanceCore = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
-    }
-  }
-  karpenter = {
-    chart_version       = "v0.34.0"
-    repository_username = data.aws_ecrpublic_authorization_token.token.user_name
-    repository_password = data.aws_ecrpublic_authorization_token.token.password
-  }
-  
-  enable_argo_workflows                  = true
-  argo_workflows = {
-    name          = "argo-workflows"
-    chart_version = "0.41.4"
-    repository    = "https://argoproj.github.io/argo-helm"
-    namespace     = "argo-workflows"
-    values        = [templatefile("${path.module}/helm-values/argo-values.yaml", {})]
-  }
+ 
 }
 
 module "ebs_csi_driver_irsa" {

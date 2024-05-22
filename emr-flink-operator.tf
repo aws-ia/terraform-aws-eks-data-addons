@@ -19,7 +19,7 @@ resource "helm_release" "emr_flink_operator" {
   count = var.enable_emr_flink_operator ? 1 : 0
 
   name                       = try(var.emr_flink_operator_helm_config["name"], local.emr_flink_operator_name)
-  repository                 = try(var.emr_flink_operator_helm_config["repository"], "oci://${local.account_region_map[local.region]}.dkr.ecr.${local.region}.amazonaws.com")
+  repository                 = try(var.emr_flink_operator_helm_config["repository"], "oci://public.ecr.aws/emr-on-eks")
   chart                      = try(var.emr_flink_operator_helm_config["chart"], local.emr_flink_operator_name)
   version                    = try(var.emr_flink_operator_helm_config["version"], "7.1.0")
   timeout                    = try(var.emr_flink_operator_helm_config["timeout"], 300)

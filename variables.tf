@@ -374,8 +374,20 @@ variable "enable_qdrant" {
   default     = false
 }
 
+variable "enable_nvidia_triton_server" {
+  description = "Enable NVIDIA Triton Server add-on"
+  type        = bool
+  default     = false
+}
+
 variable "qdrant_helm_config" {
   description = "Helm configuration for Qdrant"
+  type        = any
+  default     = {}
+}
+
+variable "nvidia_triton_server_helm_config" {
+  description = "Helm configuration for NVIDIA Triton Server"
   type        = any
   default     = {}
 }
