@@ -70,11 +70,10 @@ module "doeks_data_addons" {
   source            = "../"
   oidc_provider_arn = module.eks.oidc_provider_arn
 
-  enable_airflow                   = false
+  enable_airflow                   = true
   enable_aws_efa_k8s_device_plugin = true
   enable_aws_neuron_device_plugin  = true
-
-  enable_emr_spark_operator        = false
+  enable_emr_spark_operator        = true
   emr_spark_operator_helm_config = {
     repository_username = data.aws_ecr_authorization_token.token.user_name
     repository_password = data.aws_ecr_authorization_token.token.password
@@ -85,27 +84,42 @@ module "doeks_data_addons" {
      version = "1.8.0"
   }
   enable_jupyterhub                = true
-  enable_kubecost                  = false   // kubecost not working with prometheus stack as node-exporter already exists
+  enable_kubecost                  = true   
   kubecost_helm_config = {
     repository_username = data.aws_ecrpublic_authorization_token.token.user_name
     repository_password = data.aws_ecrpublic_authorization_token.token.password
+    values = [
+      <<-EOT
+        global:
+          prometheus:
+            fqdn: http://kube-prometheus-stack-prometheus.kube-prometheus-stack.svc:9090
+            enabled: false
+      EOT
+    ]
   }
-  enable_nvidia_gpu_operator       = true
-  enable_kuberay_operator          = false
-  enable_spark_history_server      = false
 
+  enable_nvidia_gpu_operator       = true
+  enable_kuberay_operator          = true
+  kuberay_operator_helm_config = {
+    version = "1.1.0"
+  }
+
+  enable_spark_history_server      = true
   enable_spark_operator = true
   # With custom values
   spark_operator_helm_config = {
     values  = [templatefile("${path.module}/helm-values/spark-operator-values.yaml", {})]
   }
-  enable_strimzi_kafka_operator = false
-  enable_yunikorn               = false
+
+  enable_strimzi_kafka_operator = true
+  enable_yunikorn               = true
+  yunikorn_helm_config = {
+    version = "1.5.0"
+  }
 
   enable_qdrant                 = true
   
 }
-
 
 module "eks_blueprints_addons" {
   source = "aws-ia/eks-blueprints-addons/aws"
@@ -118,8 +132,15 @@ module "eks_blueprints_addons" {
   enable_aws_load_balancer_controller    = true
   enable_kube_prometheus_stack           = true
   kube_prometheus_stack = {
-    values  = [templatefile("${path.module}/helm-values/kube-prometheus-values.yaml", {})]
+    values = [
+      <<-EOT
+        prometheus:
+          prometheusSpec:
+            serviceMonitorSelectorNilUsesHelmValues: false
+      EOT
+    ]
   }
+
   enable_metrics_server                  = true
   enable_cert_manager                    = true
  
