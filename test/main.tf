@@ -30,7 +30,7 @@ provider "helm" {
     host                   = module.eks.cluster_endpoint
     cluster_ca_certificate = base64decode(module.eks.cluster_certificate_authority_data)
 
-    token                  = data.aws_eks_cluster_auth.this.token
+    token = data.aws_eks_cluster_auth.this.token
     #exec {
     #  api_version = "client.authentication.k8s.io/v1beta1"
     #  command     = "aws"
@@ -79,12 +79,12 @@ module "doeks_data_addons" {
     repository_password = data.aws_ecr_authorization_token.token.password
   }
 
-  enable_flink_operator            = true
-  flink_operator_helm_config       = {
-     version = "1.8.0"
+  enable_flink_operator = true
+  flink_operator_helm_config = {
+    version = "1.8.0"
   }
-  enable_jupyterhub                = true
-  enable_kubecost                  = true   
+  enable_jupyterhub = true
+  enable_kubecost   = true
   kubecost_helm_config = {
     repository_username = data.aws_ecrpublic_authorization_token.token.user_name
     repository_password = data.aws_ecrpublic_authorization_token.token.password
@@ -98,17 +98,17 @@ module "doeks_data_addons" {
     ]
   }
 
-  enable_nvidia_gpu_operator       = true
-  enable_kuberay_operator          = true
+  enable_nvidia_gpu_operator = true
+  enable_kuberay_operator    = true
   kuberay_operator_helm_config = {
     version = "1.1.0"
   }
 
-  enable_spark_history_server      = true
-  enable_spark_operator = true
+  enable_spark_history_server = true
+  enable_spark_operator       = true
   # With custom values
   spark_operator_helm_config = {
-    values  = [templatefile("${path.module}/helm-values/spark-operator-values.yaml", {})]
+    values = [templatefile("${path.module}/helm-values/spark-operator-values.yaml", {})]
   }
 
   enable_strimzi_kafka_operator = true
@@ -117,20 +117,20 @@ module "doeks_data_addons" {
     version = "1.5.0"
   }
 
-  enable_qdrant                 = true
-  
+  enable_qdrant = true
+
 }
 
 module "eks_blueprints_addons" {
-  source = "aws-ia/eks-blueprints-addons/aws"
-  version = "~> 1.0" #ensure to update this to the latest/desired version
+  source            = "aws-ia/eks-blueprints-addons/aws"
+  version           = "~> 1.0" #ensure to update this to the latest/desired version
   cluster_name      = module.eks.cluster_name
   cluster_endpoint  = module.eks.cluster_endpoint
   cluster_version   = module.eks.cluster_version
   oidc_provider_arn = module.eks.oidc_provider_arn
 
-  enable_aws_load_balancer_controller    = true
-  enable_kube_prometheus_stack           = true
+  enable_aws_load_balancer_controller = true
+  enable_kube_prometheus_stack        = true
   kube_prometheus_stack = {
     values = [
       <<-EOT
@@ -141,9 +141,9 @@ module "eks_blueprints_addons" {
     ]
   }
 
-  enable_metrics_server                  = true
-  enable_cert_manager                    = true
- 
+  enable_metrics_server = true
+  enable_cert_manager   = true
+
 }
 
 module "ebs_csi_driver_irsa" {
@@ -163,13 +163,13 @@ module "ebs_csi_driver_irsa" {
 # checkov:skip=CKV_TF_1
 #tfsec:ignore:aws-eks-enable-control-plane-logging
 module "eks" {
-  source  = "terraform-aws-modules/eks/aws"
-  version = "~> 20.8"
+  source     = "terraform-aws-modules/eks/aws"
+  version    = "~> 20.8"
   depends_on = [module.vpc]
 
-  cluster_name                   = local.name
-  cluster_version                = "1.29"
-  cluster_endpoint_public_access = true
+  cluster_name                    = local.name
+  cluster_version                 = "1.29"
+  cluster_endpoint_public_access  = true
   cluster_endpoint_private_access = true
 
   vpc_id     = module.vpc.vpc_id
@@ -186,7 +186,7 @@ module "eks" {
       most_recent = true
     }
     aws-ebs-csi-driver = {
-      most_recent = true
+      most_recent              = true
       service_account_role_arn = module.ebs_csi_driver_irsa.iam_role_arn
     }
   }
@@ -213,10 +213,10 @@ module "eks" {
       max_size     = 9
       desired_size = 7
 
-      force_update_version  = true
-      instance_types        = ["m6g.xlarge"]
-      ami_type              = "AL2_ARM_64"
-      ebs_optimized         = true
+      force_update_version = true
+      instance_types       = ["m6g.xlarge"]
+      ami_type             = "AL2_ARM_64"
+      ebs_optimized        = true
       block_device_mappings = {
         xvda = {
           device_name = "/dev/xvda"

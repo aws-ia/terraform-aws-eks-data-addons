@@ -3,7 +3,7 @@ locals {
   qdrant_repository = "https://qdrant.github.io/qdrant-helm"
   qdrant_version    = "0.7.6"
 
-  qdrant_namespace       = try(var.qdrant_helm_config["namespace"], local.qdrant_name)
+  qdrant_namespace  = try(var.qdrant_helm_config["namespace"], local.qdrant_name)
   qdrant_set_values = []
 
   qdrant_default_values = <<-EOT
@@ -30,7 +30,7 @@ persistence:
 metrics:
   serviceMonitor:
     enabled: true
-    
+
 apiKey: false
 
 EOT
@@ -103,5 +103,3 @@ resource "helm_release" "qdrant" {
     }
   }
 }
-
-
