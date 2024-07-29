@@ -1,6 +1,6 @@
 locals {
   namespace = "karpenter-resources"
-  version   = "0.0.1"
+  version   = "0.0.2"
 }
 
 resource "helm_release" "karpenter_resources" {

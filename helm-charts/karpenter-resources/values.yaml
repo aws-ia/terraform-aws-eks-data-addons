@@ -17,15 +17,15 @@ ec2NodeClass:
     httpPutResponseHopLimit: 2
     httpTokens: required
   blockDeviceMappings:
-  - deviceName: /dev/xvda
-    volumeSize: 100Gi
-    volumeType: gp3
-    encrypted: true
-    deleteOnTermination: true
+    - deviceName: /dev/xvda
+      ebs:
+        volumeSize: 100Gi
+        volumeType: gp3
+        encrypted: true
+        deleteOnTermination: true
   detailedMonitoring: true
   userData:
   instanceStorePolicy:
-
 # NodePool specific values
 nodePool:
   enabled: true
