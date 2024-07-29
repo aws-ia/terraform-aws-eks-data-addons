@@ -16,8 +16,8 @@ ec2NodeClass:
     httpProtocolIPv6: disabled
     httpPutResponseHopLimit: 2
     httpTokens: required
-  blockDevice:
-    deviceName: /dev/xvda
+  blockDeviceMappings:
+  - deviceName: /dev/xvda
     volumeSize: 100Gi
     volumeType: gp3
     encrypted: true
