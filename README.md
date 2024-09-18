@@ -59,9 +59,16 @@ module "eks_data_addons" {
 }
 ```
 
-----
+## Support & Feedback
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+> [!IMPORTANT]
+> EKS Blueprints for Terraform is maintained by AWS Solution Architects. It is not part of an AWS
+> service and support is provided as a best-effort by the EKS Blueprints community. To provide feedback,
+> please use the [issues templates](https://github.com/aws-ia/terraform-aws-eks-data-addons/issues)
+> provided. If you are interested in contributing to EKS Blueprints, see the
+> [Contribution guide](https://github.com/aws-ia/terraform-aws-eks-data-addons/blob/main/.github/CONTRIBUTING.md).
+
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -105,6 +112,7 @@ module "eks_data_addons" {
 | [helm_release.nvidia_gpu_operator](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 | [helm_release.nvidia_triton_server](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 | [helm_release.pinot](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
+| [helm_release.qdrant](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 | [helm_release.spark_history_server](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 | [helm_release.spark_operator](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 | [helm_release.strimzi_kafka_operator](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
@@ -145,6 +153,7 @@ module "eks_data_addons" {
 | <a name="input_enable_nvidia_gpu_operator"></a> [enable\_nvidia\_gpu\_operator](#input\_enable\_nvidia\_gpu\_operator) | Enable NVIDIA GPU Operator add-on | `bool` | `false` | no |
 | <a name="input_enable_nvidia_triton_server"></a> [enable\_nvidia\_triton\_server](#input\_enable\_nvidia\_triton\_server) | Enable NVIDIA Triton Server add-on | `bool` | `false` | no |
 | <a name="input_enable_pinot"></a> [enable\_pinot](#input\_enable\_pinot) | Enable Apache Pinot Add-On | `bool` | `false` | no |
+| <a name="input_enable_qdrant"></a> [enable\_qdrant](#input\_enable\_qdrant) | Enable Qdrant Vector Database add-on | `bool` | `false` | no |
 | <a name="input_enable_spark_history_server"></a> [enable\_spark\_history\_server](#input\_enable\_spark\_history\_server) | Enable Spark History Server add-on | `bool` | `false` | no |
 | <a name="input_enable_spark_operator"></a> [enable\_spark\_operator](#input\_enable\_spark\_operator) | Enable Spark on K8s Operator add-on | `bool` | `false` | no |
 | <a name="input_enable_strimzi_kafka_operator"></a> [enable\_strimzi\_kafka\_operator](#input\_enable\_strimzi\_kafka\_operator) | Enable the Strimzi Kafka Operator | `bool` | `false` | no |
@@ -163,6 +172,7 @@ module "eks_data_addons" {
 | <a name="input_nvidia_triton_server_helm_config"></a> [nvidia\_triton\_server\_helm\_config](#input\_nvidia\_triton\_server\_helm\_config) | Helm configuration for NVIDIA Triton Server | `any` | `{}` | no |
 | <a name="input_oidc_provider_arn"></a> [oidc\_provider\_arn](#input\_oidc\_provider\_arn) | The ARN of the cluster OIDC Provider | `string` | n/a | yes |
 | <a name="input_pinot_helm_config"></a> [pinot\_helm\_config](#input\_pinot\_helm\_config) | Apache Pinot Helm Chart config | `any` | `{}` | no |
+| <a name="input_qdrant_helm_config"></a> [qdrant\_helm\_config](#input\_qdrant\_helm\_config) | Helm configuration for Qdrant | `any` | `{}` | no |
 | <a name="input_spark_history_server_helm_config"></a> [spark\_history\_server\_helm\_config](#input\_spark\_history\_server\_helm\_config) | Helm configuration for Spark History Server | `any` | `{}` | no |
 | <a name="input_spark_operator_helm_config"></a> [spark\_operator\_helm\_config](#input\_spark\_operator\_helm\_config) | Helm configuration for Spark K8s Operator | `any` | `{}` | no |
 | <a name="input_strimzi_kafka_operator_helm_config"></a> [strimzi\_kafka\_operator\_helm\_config](#input\_strimzi\_kafka\_operator\_helm\_config) | Helm configuration for Strimzi Kafka Operator | `any` | `{}` | no |
@@ -192,4 +202,4 @@ module "eks_data_addons" {
 | <a name="output_strimzi_kafka_operator"></a> [strimzi\_kafka\_operator](#output\_strimzi\_kafka\_operator) | Strimzi Kafka Operator Helm Chart metadata |
 | <a name="output_volcano"></a> [volcano](#output\_volcano) | Volcano Batch Scheduler Helm Chart metadata |
 | <a name="output_yunikorn"></a> [yunikorn](#output\_yunikorn) | Yunikorn Helm Chart metadata |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->
