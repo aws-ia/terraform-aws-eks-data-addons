@@ -32,10 +32,13 @@ nodePool:
   labels:
   taints:
   requirements:
+  expireAfter: 720h
+  terminationGracePeriod: 48h
   disruption:
     consolidationPolicy: WhenEmpty
     consolidateAfter: 30s
-    expireAfter: 720h
+    budgets:
+    - nodes: 10%
   limits:
     cpu: "1000"
     memory: 1000Gi
