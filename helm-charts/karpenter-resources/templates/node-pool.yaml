@@ -31,9 +31,7 @@ spec:
       terminationGracePeriod: {{ .Values.nodePool.terminationGracePeriod }}
   disruption:
     consolidationPolicy: {{ .Values.nodePool.disruption.consolidationPolicy }}
-    {{- if eq .Values.nodePool.disruption.consolidationPolicy "WhenEmpty" }}
-    consolidateAfter: {{ .Values.nodePool.disruption.consolidateAfter }} # Only defined if consolidationPolicy is WhenEmpty
-    {{- end }}
+    consolidateAfter: {{ .Values.nodePool.disruption.consolidateAfter }}
     {{- with .Values.nodePool.disruption.budgets }}
     budgets:
     {{- toYaml . | nindent 4 }}

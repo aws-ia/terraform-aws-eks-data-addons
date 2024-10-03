@@ -6,7 +6,8 @@ metadata:
 spec:
   {{- if .Values.ec2NodeClass.amiFamily }}
   amiFamily: {{ .Values.ec2NodeClass.amiFamily }}
-  {{- else if .Values.ec2NodeClass.amiSelectorTerms }}
+  {{- end }}
+  {{- if .Values.ec2NodeClass.amiSelectorTerms }}
   amiSelectorTerms:
     {{- toYaml .Values.ec2NodeClass.amiSelectorTerms | nindent 4 }}
   {{- end }}
