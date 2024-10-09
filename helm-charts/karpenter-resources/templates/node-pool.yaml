@@ -1,5 +1,5 @@
 {{- if .Values.nodePool.enabled }}
-apiVersion: karpenter.sh/v1beta1
+apiVersion: karpenter.sh/v1
 kind: NodePool
 metadata:
   name: {{ .Values.name }}
@@ -17,6 +17,8 @@ spec:
     spec:
       nodeClassRef:
         name: {{ .Values.name }}
+        group: karpenter.k8s.aws
+        kind: EC2NodeClass
       {{- with .Values.nodePool.taints }}
       taints:
       {{- toYaml . | nindent 8 }}
@@ -25,12 +27,15 @@ spec:
       requirements:
       {{- toYaml . | nindent 8 }}
       {{- end }}
+      expireAfter: {{ .Values.nodePool.expireAfter }}
+      terminationGracePeriod: {{ .Values.nodePool.terminationGracePeriod }}
   disruption:
     consolidationPolicy: {{ .Values.nodePool.disruption.consolidationPolicy }}
-    {{- if eq .Values.nodePool.disruption.consolidationPolicy "WhenEmpty" }}
-    consolidateAfter: {{ .Values.nodePool.disruption.consolidateAfter }} # Only defined if consolidationPolicy is WhenEmpty
-    {{- end }}
-    expireAfter: {{ .Values.nodePool.disruption.expireAfter }}
+    consolidateAfter: {{ .Values.nodePool.disruption.consolidateAfter }}
+    {{- with .Values.nodePool.disruption.budgets }}
+    budgets:
+    {{- toYaml . | nindent 4 }}
+    {{- end }}    
   limits:
     cpu: {{ .Values.nodePool.limits.cpu }}
     memory: {{ .Values.nodePool.limits.memory }}

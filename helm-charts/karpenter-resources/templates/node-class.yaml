@@ -1,12 +1,13 @@
 {{- if .Values.ec2NodeClass.enabled }}
-apiVersion: karpenter.k8s.aws/v1beta1
+apiVersion: karpenter.k8s.aws/v1
 kind: EC2NodeClass
 metadata:
   name: {{ .Values.name }}
 spec:
   {{- if .Values.ec2NodeClass.amiFamily }}
   amiFamily: {{ .Values.ec2NodeClass.amiFamily }}
-  {{- else if .Values.ec2NodeClass.amiSelectorTerms }}
+  {{- end }}
+  {{- if .Values.ec2NodeClass.amiSelectorTerms }}
   amiSelectorTerms:
     {{- toYaml .Values.ec2NodeClass.amiSelectorTerms | nindent 4 }}
   {{- end }}

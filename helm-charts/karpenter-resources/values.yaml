@@ -5,8 +5,8 @@ clusterName: test-cluster
 # EC2NodeClass specific values
 ec2NodeClass:
   enabled: true
-  amiFamily: AL2
   amiSelectorTerms:
+    - alias: "bottlerocket@latest"
   subnetSelectorTerms: # tags or id see documentation, https://karpenter.sh/docs/concepts/nodeclasses/
     id:
   securityGroupSelectorTerms: # tags, name, id see documentation, https://karpenter.sh/docs/concepts/nodeclasses/
@@ -32,10 +32,13 @@ nodePool:
   labels:
   taints:
   requirements:
+  expireAfter: 720h
+  terminationGracePeriod: 48h
   disruption:
     consolidationPolicy: WhenEmpty
     consolidateAfter: 30s
-    expireAfter: 720h
+    budgets:
+    - nodes: 10%
   limits:
     cpu: "1000"
     memory: 1000Gi
