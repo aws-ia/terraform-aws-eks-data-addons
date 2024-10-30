@@ -35,7 +35,7 @@ spec:
     {{- with .Values.nodePool.disruption.budgets }}
     budgets:
     {{- toYaml . | nindent 4 }}
-    {{- end }}    
+    {{- end }}
   limits:
     cpu: {{ .Values.nodePool.limits.cpu }}
     memory: {{ .Values.nodePool.limits.memory }}

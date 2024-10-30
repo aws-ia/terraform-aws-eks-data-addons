@@ -1,10 +1,10 @@
 resource "helm_release" "aws_neuron_device_plugin" {
   count = var.enable_aws_neuron_device_plugin ? 1 : 0
 
-  name                       = try(var.aws_neuron_device_plugin_helm_config["name"], "neuron-device-plugin")
+  name                       = try(var.aws_neuron_device_plugin_helm_config["name"], "neuron-helm-chart")
   repository                 = try(var.aws_neuron_device_plugin_helm_config["repository"], null)
-  chart                      = try(var.aws_neuron_device_plugin_helm_config["chart"], "${path.module}/helm-charts/neuron-device-plugin")
-  version                    = try(var.aws_neuron_device_plugin_helm_config["version"], "0.1.0")
+  chart                      = try(var.aws_neuron_device_plugin_helm_config["chart"], "oci://public.ecr.aws/neuron/neuron-helm-chart")
+  version                    = try(var.aws_neuron_device_plugin_helm_config["version"], "1.0.0")
   timeout                    = try(var.aws_neuron_device_plugin_helm_config["timeout"], 300)
   values                     = try(var.aws_neuron_device_plugin_helm_config["values"], null)
   create_namespace           = try(var.aws_neuron_device_plugin_helm_config["create_namespace"], false)
