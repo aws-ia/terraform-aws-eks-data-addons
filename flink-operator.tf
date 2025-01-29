@@ -1,6 +1,6 @@
 locals {
   flink_operator_name    = "flink-kubernetes-operator"
-  flink_operator_version = try(var.flink_operator_helm_config["version"], "1.11.0")
+  flink_operator_version = try(var.flink_operator_helm_config["version"], "1.10.0")
 }
 resource "helm_release" "flink_operator" {
   count = var.enable_flink_operator ? 1 : 0
