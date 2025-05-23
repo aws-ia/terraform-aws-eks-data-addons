@@ -1,7 +1,7 @@
 locals {
   spark_history_server_name       = "spark-history-server"
   spark_history_server_repository = "https://kubedai.github.io/spark-history-server"
-  spark_history_server_version    = "1.0.0"
+  spark_history_server_version    = "1.3.1"
 
   spark_history_server_service_account = "spark-history-server-sa"
   spark_history_server_create_irsa     = var.enable_spark_history_server && try(var.spark_history_server_helm_config.create_irsa, true)
@@ -24,12 +24,6 @@ sparkConf: |-
   spark.hadoop.fs.s3a.impl=org.apache.hadoop.fs.s3a.S3AFileSystem
   spark.eventLog.enabled=true
   spark.history.ui.port=18080
-
-image:
-  repository: public.ecr.aws/data-on-eks/spark3.3.1-web-ui
-  pullPolicy: Always
-  # Overrides the image tag whose default is the chart appVersion.
-  tag: latest
 
 resources:
   limits:
