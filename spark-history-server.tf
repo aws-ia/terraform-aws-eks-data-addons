@@ -6,10 +6,10 @@ locals {
   spark_history_server_service_account = "spark-history-server-sa"
   spark_history_server_create_irsa     = var.enable_spark_history_server && try(var.spark_history_server_helm_config.create_irsa, true)
   spark_history_server_namespace       = try(var.spark_history_server_helm_config["namespace"], local.spark_history_server_name)
-  
+
   # Parse user values
   user_provided_values = try(yamldecode(var.spark_history_server_helm_config.values[0]), {})
-  
+
   # Build the final configuration - always S3 for AWS, but preserve user's S3 config
   spark_history_server_values = yamlencode(merge(
     local.user_provided_values,
@@ -41,13 +41,13 @@ resource "helm_release" "spark_history_server" {
   version          = try(var.spark_history_server_helm_config["version"], local.spark_history_server_version)
   namespace        = local.spark_history_server_namespace
   create_namespace = try(var.spark_history_server_helm_config["create_namespace"], true)
-  
+
   values = [local.spark_history_server_values]
 
   # Essential deployment settings
   timeout         = try(var.spark_history_server_helm_config["timeout"], 300)
-  wait           = try(var.spark_history_server_helm_config["wait"], true)
-  atomic         = try(var.spark_history_server_helm_config["atomic"], true)
+  wait            = try(var.spark_history_server_helm_config["wait"], true)
+  atomic          = try(var.spark_history_server_helm_config["atomic"], true)
   cleanup_on_fail = try(var.spark_history_server_helm_config["cleanup_on_fail"], true)
 
   # Pass through other settings
@@ -122,4 +122,3 @@ module "spark_history_server_irsa" {
 
   tags = try(var.spark_history_server_helm_config.tags, {})
 }
-
